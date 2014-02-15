@@ -1,0 +1,40 @@
+update
+install grc 
+install coreutils
+install spark
+
+install python
+install python3
+install pyenv
+
+install rbenv
+
+install maven
+install gradle
+
+tap phinze/cask
+install brew-cask
+
+cask install node
+cask install iterm2
+cask install notational-velocity
+cask install google-chrome
+cask install alfred
+cask install dash
+cask install sublime-text
+cask install colloquy
+cask install marked2
+cask install onepassword
+cask install omnigraffle
+cask install omnifocus
+cask install omnigraphsketcher
+cask install omnioutliner-pro
+cask install audio-hijack-pro
+cask install intellij-idea-community
+cask install vlc
+cask install wireshark
+cask install vagrant
+cask install virtualbox
+cask install vmware-fusion
+cask install xquartz
+
