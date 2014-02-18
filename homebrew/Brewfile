@@ -1,40 +1,67 @@
 update
-install grc 
+
+# Install basics
+install grc
 install coreutils
 install spark
 
+# Install Python
 install python
 install python3
 install pyenv
 
+# Install Ruby
 install rbenv
 
+# Install Java
 install maven
 install gradle
+
+
+# Install OSX Apps
 
 tap phinze/cask
 install brew-cask
 
-cask install node
-cask install iterm2
-cask install notational-velocity
-cask install google-chrome
 cask install alfred
+cask install audio-hijack-pro
+cask install bartender
+cask install caffeine
+cask install choosy
 cask install dash
-cask install sublime-text
-cask install colloquy
+cask install dropbox
+cask install fantasical
+cask install firefox
+cask install fluid
+cask install flux
+cask install intellij-idea-community
+cask install istat-menus
+cask install iterm2
+cask install google-chrome
+cask install google-hangouts
 cask install marked2
+cask install node
+cask install notational-velocity
 cask install onepassword
 cask install omnigraffle
 cask install omnifocus
 cask install omnigraphsketcher
 cask install omnioutliner-pro
-cask install audio-hijack-pro
-cask install intellij-idea-community
-cask install vlc
-cask install wireshark
+cask install postgres-app
+cask install pycharm-community
+cask install screenflow
+cask install scrivener
+cask install sequel-rp
+cask install sublime-text
+cask install skype
+cask install source-tree
+cask install textexpander
+cask install transmit
+cask install the-unarchiver
 cask install vagrant
 cask install virtualbox
+cask install visualvm
+cask install vlc
 cask install vmware-fusion
+cask install wireshark
 cask install xquartz
-

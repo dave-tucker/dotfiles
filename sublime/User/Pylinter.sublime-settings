@@ -1,0 +1,17 @@
+{
+    // Show different icons for errors, warnings, etc.
+    "use_icons": true,
+
+    // Automatically run Pylinter when saving a Python document
+    "run_on_save": true,
+
+    // Don't hide pylint messages when moving the cursor
+    "message_stay": true,
+
+    // Full path to the lint.py module in the pylint package
+    "pylint_path": "/usr/local/lib/python2.7/site-packages/pylint/lint.py",
+
+    // Optional full path to a Pylint configuration file
+    "pylint_rc": "/Users/dave/.pylintrc"
+
+}
