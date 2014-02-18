@@ -1,0 +1,29 @@
+{
+	"installed_packages":
+	[
+		"2pdf",
+		"All Autocomplete",
+		"AngularJS",
+		"CoffeeLint",
+		"CoffeeScript",
+		"CSSLint",
+		"DashDoc",
+		"FileDiffs",
+		"Gist",
+		"Git",
+		"GitGutter",
+		"Goto Documentation",
+		"LESS",
+		"MarkdownEditing",
+		"Marked.app Menu",
+		"Package Control",
+		"Pretty JSON",
+		"Pylinter",
+		"SendToPasteBin",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeLinter",
+		"SublimeREPL",
+		"Theme - Soda"
+	]
+}

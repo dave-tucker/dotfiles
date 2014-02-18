@@ -1,0 +1,6 @@
+ {
+ 	"sublimelinter_disable":
+    [
+    "python"
+    ]
+ }
