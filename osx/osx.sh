@@ -1,12 +1,14 @@
-# Gratuitously stolen from @mathiasbynens
+# Based on the awesome work of @mathiasbynens
 # https://github.com/mathiasbynens/dotfiles/blob/master/.osx
 
-# Disable menu bar transparency
-defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
+echo "  Setting sensible OSX Defaults"
+
+# Ensable menu bar transparency
+defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool true
 
 # Show remaining battery time; hide percentage
 defaults write com.apple.menuextra.battery ShowPercent -string "NO"
-defaults write com.apple.menuextra.battery ShowTime -string "YES"
+defaults write com.apple.menuextra.battery ShowTime -string "NO"
 
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
@@ -24,11 +26,11 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-# Disable opening and closing window animations
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+# Enable opening and closing window animations
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool true
 
-# Disable Mission Control Animations
-defaults write com.apple.dock expose-animation-duration -int 0
+# Enable Mission Control Animations
+defaults write com.apple.dock expose-animation-duration -int 1
 
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -79,8 +81,8 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
-# Disable window animations and Get Info animations in Finder
-defaults write com.apple.finder DisableAllAnimations -bool true
+# Don't Disable window animations and Get Info animations in Finder
+defaults write com.apple.finder DisableAllAnimations -bool false
 
 # Show all filename extensions in Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
@@ -120,7 +122,7 @@ defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Empty Trash securely by default
-# defaults write com.apple.finder EmptyTrashSecurely -bool true
+defaults write com.apple.finder EmptyTrashSecurely -bool true
 
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
@@ -157,8 +159,8 @@ defaults write com.apple.Dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock (actually, make it fast. If you want to remove, use 0)
 defaults write com.apple.dock autohide-time-modifier -float 0.25
 
-# Enable the 2D Dock
-defaults write com.apple.dock no-glass -bool true
+# Don't Enable the 2D Dock - Like Glass
+defaults write com.apple.dock no-glass -bool false
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
@@ -174,8 +176,8 @@ defaults write com.apple.dock itunes-notifications -bool true
 # Add a spacer to the right side of the Dock (where the Trash is)
 #defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
-# Disable shadow in screenshots
-defaults write com.apple.screencapture disable-shadow -bool true
+# Don't Disable shadow in screenshots
+defaults write com.apple.screencapture disable-shadow -bool false
 
 # Disable Safari’s thumbnail cache for History and Top Sites
 defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
