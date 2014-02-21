@@ -26,8 +26,8 @@ defaults write com.apple.LaunchServices LSQuarantine -bool false
 # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
 defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
-# Enable opening and closing window animations
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool true
+# Disable opening and closing window animations
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 # Enable Mission Control Animations
 defaults write com.apple.dock expose-animation-duration -int 1
@@ -41,8 +41,8 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 # # Disable the “reopen windows when logging back in” option
 # # This works, although the checkbox will still appear to be checked,
 # # and the command needs to be entered again for every restart.
-# defaults write com.apple.loginwindow TALLogoutSavesState -bool false
-# defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
+#defaults write com.apple.loginwindow TALLogoutSavesState -bool false
+#defaults write com.apple.loginwindow LoginwindowLaunchesRelaunchApps -bool false
 
 # Fix for the ancient UTF-8 bug in QuickLook (http://mths.be/bbo)
 # Commented out, as this is known to cause problems when saving files in Adobe Illustrator CS5 :(
@@ -81,8 +81,8 @@ defaults write com.apple.screensaver askForPasswordDelay -int 0
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
-# Don't Disable window animations and Get Info animations in Finder
-defaults write com.apple.finder DisableAllAnimations -bool false
+# Disable window animations and Get Info animations in Finder
+defaults write com.apple.finder DisableAllAnimations -bool true
 
 # Show all filename extensions in Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
