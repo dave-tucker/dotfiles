@@ -1,3 +1,5 @@
+# Borrowed from https://github.com/matthewmccullough/dotfiles/
+
 [user]
   name = Dave Tucker
   email = dave@dtucker.co.uk
@@ -46,7 +48,7 @@
   dc = diff --staged
   dw = diff --word-diff
   dcw = diff --color-words
-  dm = !git diff | mate
+  ds = !git diff | subl
   dv = !git diff | vim
   who = shortlog -s --
   ph = push

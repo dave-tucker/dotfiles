@@ -7,4 +7,5 @@ echo "   Installing Sublime Text 2 Preferences"
 cp -vf User/* "~/Library/Application Support/Sublime Text 2/User/"
 
 echo "   Linking Sublime Text to ~/bin/subl"
+mkdir -p ~/bin
 ln -s "~/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl" ~/bin/subl
