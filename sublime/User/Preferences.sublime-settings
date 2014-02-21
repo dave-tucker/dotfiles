@@ -1,6 +1,7 @@
 {
 	"auto_complete": false,
 	"caret_style": "solid",
+	"color_scheme" : "Packages/Base16 Color Schemes/base16-ocean.dark.tmTheme",
 	"draw_white_space": "all",
 	"ensure_newline_at_eof_on_save": true,
 	"file_exclude_patterns":
@@ -36,7 +37,7 @@
 	"scroll_past_end": false,
 	"show_minimap": false,
 	"tab_size": 4,
-	"theme": "Soda Dark.sublime-theme",
+    "theme": "Spacegray.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
 	"wide_caret": true,

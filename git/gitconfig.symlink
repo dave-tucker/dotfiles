@@ -1,128 +1,255 @@
-# set your user tokens as environment variables, such as ~/.secrets
-# See the README for examples.
+[user]
+  name = Dave Tucker
+  email = dave@dtucker.co.uk
+
 [color]
-  ui = true
+# ui = true is a superset of all the more specific color options
+#  as documented at http://book.git-scm.com/5_customizing_git.html
+# When set to always, always use colors in all git commands which are capable of colored output.
+# When false, never. When set to true or auto, use colors only when the output is to the terminal.
+# When more specific variables of color.* are set, they always take precedence over this setting.
+# Defaults to false.
+  ui = auto
+  # diff = auto
+  # status = auto
+  # branch = auto
+
 [color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
+  #current = yellow reverse
+  #local = yellow
+  #remote = green
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red
-  new = green
+  #meta = yellow bold
+  #frag = magenta bold
+  #old = red bold
+  #new = green bold
+[color "status"]
+  #added = yellow
+  #changed = green
+  #untracked = cyan
+
+[core]
+  excludesfile = ~/.gitignore
+  quotepath = false
+  autocrlf = input
+  safecrlf = warn
+  editor = vim
+
 [alias]
-  # add
-  a = add                           # add
-  chunkyadd = add --patch           # stage commits chunk by chunk
+  br = branch -a
+  s = status -u -s
+  cl = log --stat -C -2
+  c = commit
+  co = checkout
+  d = diff --color-words
+  dh = diff HEAD
+  dc = diff --staged
+  dw = diff --word-diff
+  dcw = diff --color-words
+  dm = !git diff | mate
+  dv = !git diff | vim
+  who = shortlog -s --
+  ph = push
+  pl = pull
+  lp = log -p
+  lod = log --oneline --decorate
+  lg = log --graph
+  lpo = log --pretty=oneline --abbrev-commit --graph --decorate --all
+  l1 = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  l2 = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  l3 = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  spull = !git-svn fetch && git-svn rebase
+  spush = !git-svn dcommit
+  sync = !git pull && git push
+  es = !git pull --rebase && git push
+  lf = log --pretty=fuller
+  ignorechanges = update-index --assume-unchanged
+  noticechanges = update-index --no-assume-unchanged
+  gc-ap = gc --aggressive --prune
+  listconf = config --global --list
+  cam = commit -a -m
+  lsm = log -M --stat
+  hse = log --stat -5
+  diffall = diff HEAD
+  logr = log -M
+  logr2 = log --stat -M -2
+  logit = log --stat -M
+  scrub = !git reset --hard && git clean -fd
+    pubdev = !git pub checkout master && git pull && git checkout dev && git rebase master && git checkout master && git merge dev && git wtf
+  pub = push -u origin
+  cs = status
+  rv = remote -v
+  lwr = log --stat -C
+  pur = pull --rebase
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  orphank = !gitk --all `git reflog | cut -c1-7`&
+  orphanl = !git log --pretty=oneline --abbrev-commit --graph --decorate `git reflog | cut -c1-7`
+  k = !exec gitk --all&
+  testecho1 = !sh -c 'echo with slash: zero=$0 one=$1 two=$2' -
+  # te1 RESULT: with slash: zero=- one=A two=B
+  testecho2 = !sh -c 'echo without slash: zero=$0 one=$1 two=$2'
+  # te2 RESULT: without slash: zero=A one=B two=C
+  st = status
+  l = log --stat -C
+  ll = log --stat -C -3
+  servehere = daemon --verbose --informative-errors --reuseaddr --export-all --base-path=. --enable=receive-pack
+  purgeme = !git clean -fd && git reset --hard
+  prunenow = gc --prune=now
+  ri = rebase --interactive --autosquash
+  lol = log --pretty=oneline --graph --abbrev-commit --all
+  blg = log --graph --decorate --all --abbrev-commit --pretty=oneline
+  slog = log --graph --simplify-by-decoration --all --abbrev-commit --pretty=oneline
+  lgso = log --graph --date=short --pretty=format:'%C(yellow)%h%Creset %cn%x09%cd %s%C(green bold)%d'
+  ro = !git fetch origin && git reset --hard origin/master
+  shorten = "!sh -c 'curl -i http://git.io -F url=$1' -"
+  pushnotes = !sh -c 'git push $1 refs/notes/*' -
+  fetchnotes = !sh -c 'git fetch $1 refs/notes/*:refs/notes/*' -
+  showignored = clean -ndX
+  showignored2 = ls-files --others --ignored --exclude-standard
+  showuntracked = ls-files --others --exclude-standard
+  rmmissing = !git rm $(git ls-files --deleted)
+  mergekeepoursonly = merge -s ours
+  redocommit = reset --soft HEAD^
+  listunstaged = diff --name-status
+  liststaged = diff --name-status --staged
+  listhistory = log --name-status
+  logn = log --oneline --name-only
+  busypeople = shortlog -6
+  busythisweek = shortlog --since=one.week.ago
+  configpushtracking = config push.default tracking
+  configpushnothing = config push.default nothing
+  configpushtracking = config push.default matching
+  configpushcurrent = config push.default current
 
-  # via http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
-  snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
-  snapshots = !git stash list --grep snapshot
+  # Other alias ideas that don't quite work yet
+  #testnewrepodoesntwork1 = !echo git init $1 && echo cd $1
+  #testnewrepodoesntwork2 = !sh -c 'git init $1; echo hi' -
+  #testnewrepodoesntwork3 = "!f() { git init $1}; f"
+  nr = "!sh -c 'git init $0'"
+  echoparam1 = "!sh -c 'echo $0'"
+  #testshfunction = "!function gitme() { git init $1; cd $1; }; gitme"
 
-  #via http://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
-  recent-branches = !git for-each-ref --count=5 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  fixup = "!sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
+  squash = "!sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
+  ccfq = "!sh -c 'git add $1 && git commit -m\"Placeholder\"' -"
+  logme = log --author=Matthew --stat -C
+  cob = checkout -b
+  sno = show --name-only
+  logsimple = log --graph --abbrev-commit --pretty=oneline --all --decorate
+  gwcl = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  rlog = log --color-words --stat -3
+  lm = log --stat -M
 
-  # branch
-  b = branch -v                     # branch (verbose)
+  # Legit
+  legitsync = !legit sync \"$@\"
+  legitswitch = !legit switch \"$@\"
+  legitbranches = !legit branches
+  legitsprout = !legit sprout \"$@\"
+  legitunpublish = !legit unpublish \"$@\"
+  legitharvest = !legit harvest \"$@\"
+  legitpublish = !legit publish \"$@\"
+  legitgraft = !legit graft \"$@\"
 
-  # commit
-  c = commit -m                     # commit with message
-  ca = commit -am                   # commit all with message
-  ci = commit                       # commit
-  amend = commit --amend            # ammend your last commit
-  ammend = commit --amend           # ammend your last commit
+  #Searches
+  findjuniodeletes = log --author=Junio --diff-filter=D --since=2.years.ago
 
-  # checkout
-  co = checkout                     # checkout
-  nb = checkout -b                  # create and switch to a new branch (mnemonic: "git new branch branchname...")
+  #https://git.wiki.kernel.org/index.php?title=Aliases
+  aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+  graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
+  abbr = "!sh -c 'git rev-list --all | grep ^$1 | while read commit; do git --no-pager log -n1 --pretty=format:\"%H %ci %an %s%n\" $commit; done' -"
+  oneline ="!_() { $(test $# -eq 0 && echo xargs -L1) git log --no-walk --decorate --oneline \"$@\"; }; _"
+  tips = "!_() { t=$(git rev-list --no-merges --max-count=1 \"$@\"); if test -n \"$t\"; then echo $t; _ \"$@\" ^$t; fi; }; _"
+  empty-tree-sha1 = hash-object -t tree /dev/null
+  whitespaceviolations = "!git diff --check $(git empty-tree-sha1)"
+  patchforthis = "!git diff -p $(git empty-tree-sha1)"
+  tagcontains = git tag -l --contains HEAD
+  cc-cache = "config --global credential.helper 'cache --timeout=300'"
+  cc-off = "config --unset --global credential.helper"
+  cc-helperosx = "config --global credential.helper 'osxkeychain'"
+  cc-helperwin = "config --global credential.helper 'wincred'"
+  cc-helperlin = "config --global credential.helper '/pathto/git-credential-gnome-key'"
+  logm = log --stat -M
+  logcpy = log --stat -1 -C -C
+  pushsvn = svn dcommit
+  pullsvn = svn rebase
+  nfjsunpushed = log origin/master..master --oneline
+  rtheirs = !git checkout --theirs ./ && git add . && git rebase --continue
+  logfive = log --graph --pretty=oneline --abbrev-commit --decorate --all -5
+  noderelnotes = git log --graph --pretty=format:'%h%d %s (%an)'
+  configsimplelog = config format.pretty oneline
 
-  # cherry-pick
-  cp = cherry-pick -x               # grab a change from a branch
 
-  # diff
-  d = diff                          # diff unstaged changes
-  dc = diff --cached                # diff staged changes
-  last = diff HEAD^                 # diff last committed change
-
-  # log
-  l = log --graph --date=short
-  changes = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\" --name-status
-  short = log --pretty=format:\"%h %cr %cn %Cgreen%s%Creset\"
-  changelog = log --pretty=format:\" * %s\"
-  shortnocolor = log --pretty=format:\"%h %cr %cn %s\"
-
-  # pull
-  pl = pull                         # pull
-
-  # push
-  ps = push                         # push
-
-  # rebase
-  rc = rebase --continue            # continue rebase
-  rs = rebase --skip                # skip rebase
-
-  # remote
-  r = remote -v                     # show remotes (verbose)
-
-  # reset
-  unstage = reset HEAD              # remove files from index (tracking)
-  uncommit = reset --soft HEAD^     # go back before last commit, with files in uncommitted state
-  filelog = log -u                  # show changes to a file
-  mt = mergetool                    # fire up the merge tool
-
-  # stash
-  ss = stash                        # stash changes
-  sl = stash list                   # list stashes
-  sa = stash apply                  # apply stash (restore changes)
-  sd = stash drop                   # drop stashes (destory changes)
-
-  # status
-  s = status                        # status
-  st = status                       # status
-  stat = status                     # status
-
-  # tag
-  t = tag -n                        # show tags with <n> lines of each tag message
-
-  # svn helpers
-  svnr = svn rebase
-  svnd = svn dcommit
-  svnl = svn log --oneline --show-commit
-[format]
-  pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
-[mergetool]
-  prompt = false
-[mergetool "mvimdiff"]
-  cmd="mvim -c 'Gdiff' $MERGED"     # use fugitive.vim for 3-way merge
-  keepbackup=false
-[merge]
-  summary = true
-  verbosity = 1
-  tool = mvimdiff
 [apply]
   whitespace = nowarn
-[branch]
-  autosetupmerge = true
-[push]
-  # 'git push' will push the current branch to its tracking branch
-  # the usual default is to push all branches
-  default = tracking
-[core]
-  autocrlf = false
-  editor = vim
-  excludesfile = ~/.yadr/git/gitignore
-[advice]
-  statusHints = false
-[diff]
-  # Git diff will use (i)ndex, (w)ork tree, (c)ommit and (o)bject
-  # instead of a/b/c/d as prefixes for patches
-  mnemonicprefix = true
-	algorithm = patience
-[rerere]
-  # Remember my merges
-  # http://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
-  enabled = true
-[include]
-  path = .gitconfig.user
 
+[rerere]
+  enabled = true
+
+[difftool]
+  prompt = false
+
+[diff]
+  tool = p4merge
+# renames = true
+
+[mergetool]
+  prompt = false
+  keepBackup = false
+
+[merge]
+  tool = p4merge
+
+[branch]
+    # Automatically set up pull to be --rebase
+    #autosetuprebase = always
+
+[url "git://github.com/"]
+  insteadOf = "ghg://"
+  pushInsteadOf = "ghg://"
+  # Example: git clone ghg://ntschutta/emacs
+[url "git://github.com/dave-tucker/"]
+    insteadOf = "ghgd://"
+    pushInsteadOf = "ghgd://"
+    # Example: git clone ghgd://dotfiles
+[url "git@github.com:"]
+  insteadOf = "ghs://"
+  pushInsteadOf = "ghs://"
+[url "git@github.com:dave-tucker/"]
+  insteadOf = "ghsd://"
+  pushInsteadOf = "ghsd://"
+[url "https://github.com/"]
+  insteadOf = "ghh://"
+  pushInsteadOf = "ghh://"
+[url "https://github.com/dave-tucker/"]
+  insteadOf = "ghhd://"
+  pushInsteadOf = "ghhd://"
+
+[mergetool "sourcetree"]
+  cmd = ~/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+
+[difftool "p4merge"]
+  cmd = \"~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE\"
+
+[http]
+  # proxy=http://something
+
+[github]
+  # https://github.com/blog/180-local-github-config
+  user = dave-tucker
+  #token = PLACEHOLDER
+
+[hub]
+  protocol = ssh
+[gist]
+  private = yes
+  browse = yes
+
+[ghi]
+  token = PLACEHOLDER
+
+#[credential]
+  # helper = cache --timeout=300
+
+[push]
+  default = matching

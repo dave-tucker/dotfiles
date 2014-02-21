@@ -27,8 +27,7 @@ install brew-cask
 cask install alfred
 cask install audio-hijack-pro
 cask install bartender
-# lightheadsw.com is 503'ing
-# cask install caffeine
+cask install caffeine
 cask install choosy
 cask install dash
 cask install dropbox
@@ -50,6 +49,7 @@ cask install omnigraffle
 cask install omnifocus
 cask install omnigraphsketcher
 cask install omnioutliner
+cask install p4merge
 cask install pandoc
 cask install postgres-app
 cask install pycharm-community
