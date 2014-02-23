@@ -1,3 +1,4 @@
+#!/bin/sh
 # Base16 Ocean - Console color setup script
 # Chris Kempson (http://chriskempson.com)
 

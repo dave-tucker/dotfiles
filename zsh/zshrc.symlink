@@ -10,6 +10,10 @@ export PROJECTS=~/dev
 # time that oh-my-zsh is loaded.
 ZSH_THEME="agnoster"
 
+# Base16 Shell
+BASE16_SHELL="$PROJECTS/dotfiles/zsh/base16-ocean.dark.sh"
+[[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
+
 # Load config files
 typeset -U config_files
 config_files=($PROJECTS/dotfiles/**/*.zsh)
