@@ -29,8 +29,8 @@ defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 # Disable opening and closing window animations
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
-# Enable Mission Control Animations
-defaults write com.apple.dock expose-animation-duration -int 1
+# Speed up Mission Control Animations
+defaults write com.apple.dock expose-animation-duration -float 0.15
 
 # Increase window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -159,7 +159,7 @@ defaults write com.apple.Dock autohide-delay -float 0
 # Remove the animation when hiding/showing the Dock (actually, make it fast. If you want to remove, use 0)
 defaults write com.apple.dock autohide-time-modifier -float 0.25
 
-# Don't Enable the 2D Dock - Like Glass
+# Don't Enable the 2D Dock - I Like Glass
 defaults write com.apple.dock no-glass -bool false
 
 # Automatically hide and show the Dock

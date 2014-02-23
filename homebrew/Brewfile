@@ -25,6 +25,7 @@ tap phinze/cask
 install brew-cask
 
 cask install alfred
+cask install arduino
 cask install audio-hijack-pro
 cask install bartender
 cask install caffeine
@@ -34,16 +35,17 @@ cask install dropbox
 cask install fantastical
 cask install firefox
 cask install fluid
-cask install flux
+cask install f-lux
 cask install induction
 cask install intellij-idea-community
 cask install istat-menus
 cask install iterm2
 cask install google-chrome
+cask install google-drive
 cask install google-hangouts
 cask install marked2
 cask install node
-cask install notational-velocity
+cask install nvalt
 cask install onepassword
 cask install omnigraffle
 cask install omnifocus
