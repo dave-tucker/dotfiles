@@ -1,0 +1,25 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" turn on syntax highlighting
+syntax on
+
+" turn on line numbering
+set number
+
+" Make backspace behave in a sane manner.
+set backspace=indent,eol,start
+
+" Enable file type detection and do language-dependent indenting.
+filetype plugin indent on
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+Bundle 'chriskempson/base16-vim'
+
+" color scheme
+set background=dark
+colorscheme base16-ocean
