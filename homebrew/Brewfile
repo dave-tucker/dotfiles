@@ -18,12 +18,18 @@ install rbenv
 # Install Java
 install maven
 install gradle
+install grails
+
+# SCM
+install git
+install hg
 
 # Install OSX Apps
 
 tap phinze/cask
 install brew-cask
 
+# ToDo: Add a cask for the JDK
 cask install alfred
 cask install arduino
 cask install audio-hijack-pro
