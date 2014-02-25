@@ -60,6 +60,7 @@ What I like about my dotfiles:
 - [@matthewmccullough](https://github.com/matthewmccullough/dotfiles) - for sharing his gitconfig
 - [@phinze](https://github.com/phinze/homebrew-cask/tree/master/Casks) - for homebrew-cask
 - [@kkga](https://github.com/kkga/spacegray) - for the SpaceGray theme for Sublime Text
+- [@erikzaadi](http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/) - for the auto-installation of vundle in vimrc
 
 ## License
 
