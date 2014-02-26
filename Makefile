@@ -8,11 +8,11 @@ crossplatform:
 dotfiles:
 		sh $(DOTFILES)/script/bootstrap.sh
 
-mac:
+mac:	crossplatform dotfiles
 		sh $(DOTFILES)/script/mac.sh
 
-linux:
+linux:	crossplatform dotfiles
 		sh $(DOTFILES)/script/linux.sh
 
-windows:
+windows: crossplatform dotfiles
 		sh $(DOTFILES)/script/windows.sh
