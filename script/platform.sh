@@ -15,3 +15,4 @@ elif [[ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]]; then
 fi
 
 find . -name $platform.sh | while read installer ; do sh -x "${installer}" > /dev/null ; done
+
