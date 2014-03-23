@@ -28,6 +28,7 @@ install hg
 
 tap phinze/cask
 install brew-cask
+tap caskroom/versions
 
 # ToDo: Add a cask for the JDK
 cask install alfred
@@ -66,7 +67,7 @@ cask install robomongo
 cask install screenflow
 cask install scrivener
 cask install sequel-pro
-cask install sublime-text
+cask install sublime-text3
 cask install skype
 cask install sourcetree
 cask install textexpander
