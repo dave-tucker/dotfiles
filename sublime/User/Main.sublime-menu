@@ -1,1 +1,0 @@
-[{"id":"view","children":[{"id":"layout","children":[{"command":"set_layout","caption":"Custom Grid","args":{"cols":[0,0.5,1],"rows":[0,0.5,1],"cells":[[0,0,1,1],[1,0,2,1],[0,1,2,2]]}}]}]}]

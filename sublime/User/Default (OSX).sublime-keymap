@@ -1,2 +1,3 @@
 [
+  {  "keys": ["ctrl+super+c"], "command": "send_to_paste_bin"  }
 ]
