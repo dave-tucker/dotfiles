@@ -3,16 +3,16 @@ DOTFILES := $(shell pwd)
 all: crossplatform dotfiles
 
 crossplatform:
-		sh $(DOTFILES)/script/all.sh
+		sh $(DOTFILES)/script/generic.sh
+
+platform:
+		sh $(DOTFILES)/script/platform.sh
 
 dotfiles:
 		sh $(DOTFILES)/script/bootstrap.sh
 
-mac:
-		sh $(DOTFILES)/script/mac.sh
+mac:	crossplatform dotfiles platform
 
-linux:
-		sh $(DOTFILES)/script/linux.sh
+linux:	crossplatform dotfiles platform
 
-windows:
-		sh $(DOTFILES)/script/windows.sh
+windows: crossplatform dotfiles platform

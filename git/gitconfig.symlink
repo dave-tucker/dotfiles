@@ -38,6 +38,7 @@
   editor = vim
 
 [alias]
+  aa = add --all
   br = branch -a
   s = status -u -s
   cl = log --stat -C -2
