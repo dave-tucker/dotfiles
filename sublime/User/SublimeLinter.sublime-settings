@@ -16,6 +16,11 @@
                 "max-complexity": -1,
                 "max-line-length": null,
                 "select": ""
+            },
+            "ruby": {
+                "@disable": false,
+                "args": [],
+                "excludes": []
             }
         },
         "mark_style": "outline",

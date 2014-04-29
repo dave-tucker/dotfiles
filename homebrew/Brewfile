@@ -50,14 +50,17 @@ cask install iterm2
 cask install google-chrome
 cask install google-drive
 cask install google-hangouts
+cask install graphsketcher
+cask install keyboard-maestro
+cask install mailmate
 cask install marked2
 cask install node
 cask install nvalt
 cask install onepassword
 cask install omnigraffle
 cask install omnifocus
-cask install omnigraphsketcher
 cask install omnioutliner
+cask install omnipresence
 cask install p4merge
 cask install pandoc
 cask install postgres-app
@@ -67,6 +70,7 @@ cask install robomongo
 cask install screenflow
 cask install scrivener
 cask install sequel-pro
+cask install spotify
 cask install sublime-text3
 cask install skype
 cask install sourcetree
