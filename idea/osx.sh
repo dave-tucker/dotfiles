@@ -3,4 +3,4 @@
 cd "$(dirname "$0")"
 
 echo "  Installing IntelliJ Colors"
-cp *.icls ~/Library/Preferences/IdeaIC13/colors
+find . -name \*.icls -exec cp {} ~/Library/Preferences/IdeaIC13/colors \;
