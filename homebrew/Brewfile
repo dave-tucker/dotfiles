@@ -78,6 +78,7 @@ cask install sourcetree
 cask install textexpander
 cask install transmit
 cask install the-unarchiver
+cask install utorrent
 cask install vagrant
 cask install virtualbox
 cask install visualvm
