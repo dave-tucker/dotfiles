@@ -7,7 +7,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/usr/bin/ruby</string>
-        <string>/Users/dave/dev/dotfiles/scripts/gitlogger.rb</string>
+        <string>/Users/dave/dev/dotfiles/script/gitlogger.rb</string>
     </array>
     <key>StartCalendarInterval</key>
     <dict>
