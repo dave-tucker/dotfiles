@@ -124,18 +124,10 @@
   configpushtracking = config push.default matching
   configpushcurrent = config push.default current
 
-  # Other alias ideas that don't quite work yet
-  #testnewrepodoesntwork1 = !echo git init $1 && echo cd $1
-  #testnewrepodoesntwork2 = !sh -c 'git init $1; echo hi' -
-  #testnewrepodoesntwork3 = "!f() { git init $1}; f"
-  nr = "!sh -c 'git init $0'"
-  echoparam1 = "!sh -c 'echo $0'"
-  #testshfunction = "!function gitme() { git init $1; cd $1; }; gitme"
-
   fixup = "!sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
   squash = "!sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
   ccfq = "!sh -c 'git add $1 && git commit -m\"Placeholder\"' -"
-  logme = log --author=Matthew --stat -C
+  logme = log --author='Dave Tucker' --stat -C
   cob = checkout -b
   sno = show --name-only
   logsimple = log --graph --abbrev-commit --pretty=oneline --all --decorate
@@ -152,9 +144,6 @@
   legitharvest = !legit harvest \"$@\"
   legitpublish = !legit publish \"$@\"
   legitgraft = !legit graft \"$@\"
-
-  #Searches
-  findjuniodeletes = log --author=Junio --diff-filter=D --since=2.years.ago
 
   #https://git.wiki.kernel.org/index.php?title=Aliases
   aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
@@ -211,9 +200,9 @@
   pushInsteadOf = "ghg://"
   # Example: git clone ghg://ntschutta/emacs
 [url "git://github.com/dave-tucker/"]
-    insteadOf = "ghgd://"
-    pushInsteadOf = "ghgd://"
-    # Example: git clone ghgd://dotfiles
+  insteadOf = "ghgd://"
+  pushInsteadOf = "ghgd://"
+  # Example: git clone ghgd://dotfiles
 [url "git@github.com:"]
   insteadOf = "ghs://"
   pushInsteadOf = "ghs://"
