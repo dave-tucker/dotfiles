@@ -1,0 +1,13 @@
+# Go
+export GOPATH=~/dev/go
+export PATH=$PATH:~/dev/go/bin
+
+# Java
+export JAVA_HOME=$(/usr/libexec/java_home)
+export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
+
+# Rbenv
+eval "$(rbenv init -)"
+
+#Pyenv
+eval "$(pyenv init -)"

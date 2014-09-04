@@ -16,4 +16,3 @@ alias vgpkg='vagrant package'
 alias vggs='vagrant global-status'
 alias vgc='vagrant connect'
 alias vgrdp='vagrant rdp'
-
