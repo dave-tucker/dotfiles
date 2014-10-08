@@ -4,7 +4,7 @@ cd "$(dirname "$0")"
 
 echo "   Installing Sublime Text 3 Preferences"
 
-cp -r User/* ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+cp -R User ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
 
 echo "   Linking Sublime Text to ~/bin/subl"
 mkdir -p ~/bin
