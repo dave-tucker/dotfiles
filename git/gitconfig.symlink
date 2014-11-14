@@ -231,7 +231,7 @@
 
 [github]
   # https://github.com/blog/180-local-github-config
-  user = dave-tucker
+	user = dave-tucker
   #token = PLACEHOLDER
 
 [hub]
