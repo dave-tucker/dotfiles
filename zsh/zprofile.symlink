@@ -10,7 +10,7 @@ export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 eval "$(rbenv init -)"
 
 #Pyenv
-eval "$(pyenv init -)"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # Boot2docker
 export DOCKER_TLS_VERIFY=1
