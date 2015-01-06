@@ -34,6 +34,7 @@ FORMULAS=(
     boot2docker
     caskroom/cask/brew-cask
     coreutils
+    ctags
     docker
     erlang
     go
@@ -128,6 +129,11 @@ brew update
 brew cask install ${CASKS[@]}
 
 brew cask alfred link
+
+# Special cases that need flags...
+brew install macvim --with-cscope --with-lua --HEAD
+brew install vim --with-lua
+brew linkapps macvim
 
 brew cleanup
 
