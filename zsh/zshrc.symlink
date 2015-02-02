@@ -15,13 +15,7 @@ DEFAULT_USER="dave"
 BASE16_SHELL="$PROJECTS/dotfiles/zsh/base16-ocean.dark.sh"
 [[ -s $BASE16_SHELL ]] && . $BASE16_SHELL
 
-# Load config files
-typeset -U config_files
-config_files=($PROJECTS/dotfiles/**/*.zsh)
-for file in ${config_files}
-do
-  source $file
-done
+export ZSH_CUSTOM=$PROJECTS/dotfiles/zsh
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -57,7 +51,7 @@ done
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git brew celery coffee gradle sublime colorize node ruby osx pep8 pyenv python rbenv vagrant virtualenv )
+plugins=(git brew celery coffee gradle sublime colorize node ruby osx pep8 pyenv python rbenv vagrant virtualenv cg)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -66,12 +60,12 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+   export EDITOR='mvim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
