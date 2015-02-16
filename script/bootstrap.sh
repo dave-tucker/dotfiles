@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #
 # bootstrap installs things.
 
@@ -49,10 +49,10 @@ install_dotfiles () {
       backup=false
       skip=false
 
-      if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
+      if [ "$overwrite_all" = "false" ] && [ "$backup_all" = "false" ] && [ "$skip_all" = "false" ]
       then
         user "File already exists: `basename $source`, what do you want to do? [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-        read -n 1 action
+        read action
 
         case "$action" in
           o )
@@ -72,19 +72,19 @@ install_dotfiles () {
         esac
       fi
 
-      if [ "$overwrite" == "true" ] || [ "$overwrite_all" == "true" ]
+      if [ "$overwrite" = "true" ] || [ "$overwrite_all" = "true" ]
       then
         rm -rf $dest
         success "removed $dest"
       fi
 
-      if [ "$backup" == "true" ] || [ "$backup_all" == "true" ]
+      if [ "$backup" = "true" ] || [ "$backup_all" = "true" ]
       then
         mv $dest $dest\.backup
         success "moved $dest to $dest.backup"
       fi
 
-      if [ "$skip" == "false" ] && [ "$skip_all" == "false" ]
+      if [ "$skip" = "false" ] && [ "$skip_all" = "false" ]
       then
         link_files $source $dest
       else
