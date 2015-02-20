@@ -35,7 +35,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 
 if iCanHazVundle == 0

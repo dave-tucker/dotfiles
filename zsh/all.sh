@@ -3,9 +3,9 @@
 set -e
 cd "$(dirname "$0")"
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
+if [ ! -d "$HOME/.zprezto" ]; then
 echo "   Installing Oh My ZShell!"
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 fi
 
 echo "   Changing Default Shell to ZSH"
