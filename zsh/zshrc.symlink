@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 export DEFAULT_USER="dave"
-BASE16_SHELL="$HOME/dev/dotfiles/zsh/base-16-ocean.dark.sh"
+BASE16_SHELL="$HOME/dev/dotfiles/zsh/base16-ocean.dark.sh"
 [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
 export PATH=$PATH:$HOME/bin 
