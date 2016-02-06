@@ -11,7 +11,3 @@ eval "$(rbenv init -)"
 
 #Pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# Boot2docker
-export DOCKER_TLS_VERIFY=1
-$(boot2docker shellinit | grep export)
