@@ -33,11 +33,13 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'fatih/vim-go'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'majutsushi/tagbar'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'SirVer/ultisnips'
-
+Plugin 'scrooloose/syntastic'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/webapi-vim'
+	
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
@@ -53,11 +55,34 @@ filetype plugin indent on
 syntax on
 
 " color scheme
-set background=dark
-let base16colorspace=256
-colorscheme base16-ocean
+if filereadable(expand("~/.vimrc_background"))
+    let base16colorspace=256
+    set background=dark
+    source ~/.vimrc_background
+endif
 
 " airline
 set laststatus=2
+let g:airline_theme = 'base16'
 let g:airline_powerline_fonts=1
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['flake8']
+
+" ocaml
+let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+execute "set rtp+=" . g:opamshare . "/merlin/vim"
+execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
+let g:syntastic_ocaml_checkers = ['merlin']
+au FileType ocaml setlocal expandtab
+
+" gist
+let g:gist_clip_command = 'pbcopy'
 
