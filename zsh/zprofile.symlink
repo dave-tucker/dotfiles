@@ -4,9 +4,9 @@ eval "$(rbenv init -)"
 
 # Go
 echo "==> Calling for Gophers 🐭" | lolcat
-export GOPATH=~/dev/go
-export PATH=$PATH:~/dev/go/bin
-eval "$(gimme 1.7)"
+export GOPATH=~/go
+export PATH=$PATH:~/go/bin
+eval "$(gimme 1.8.3)"
 
 # Java
 echo "==> Brewing the Java ☕" | lolcat
@@ -15,7 +15,11 @@ export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=512m"
 
 # Pyenv
 echo "==> Releasing the Pythons 🐍" | lolcat
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+export PATH=$PATH:~/.pyenv/bin
+if which pyenv > /dev/null; then
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
 # OPAM configuration
 echo "==> Whipping the Camels 🐫" | lolcat
@@ -23,6 +27,10 @@ echo "==> Whipping the Camels 🐫" | lolcat
 
 # iTerm2
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+# OpenSSL 
+CFLAGS="-I$(brew --prefix openssl)/include"
+LDFLAGS="-L$(brew --prefix openssl)/lib"
 
 # MOTD
 fortune | cowsay -f dragon | lolcat

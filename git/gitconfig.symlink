@@ -253,4 +253,6 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 [commit]
-	gpgsign = true
+	gpgsign = false
+[credential]
+	helper = osxkeychain
