@@ -1,0 +1,6 @@
+# Go
+export GOPATH=${HOME}/go
+export PATH=${PATH}:${GOPATH}/bin
+
+# Rust
+export PATH=${PATH}:${HOME}/.cargo/bin
