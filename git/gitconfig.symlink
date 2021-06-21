@@ -1,4 +1,4 @@
-# Borrowed from https://github.com/matthewmccullough/dotfiles/
+# Adapted from https://github.com/matthewmccullough/dotfiles/
 
 [user]
   name = Dave Tucker
@@ -215,44 +215,30 @@
 [url "https://github.com/dave-tucker/"]
   insteadOf = "ghhd://"
   pushInsteadOf = "ghhd://"
-[url "ssh://dave-tucker@git.opendaylight.org:29418/"]
-  insteadOf = "godl://"
-  pushInsteadOf = "godl://"
-
-[mergetool "sourcetree"]
-  cmd = ~/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
-
-[difftool "p4merge"]
-  cmd = \"~/Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE\"
 
 [http]
   # proxy=http://something
 
-[github]
-  # https://github.com/blog/180-local-github-config
-	user = dave-tucker
-  #token = PLACEHOLDER
-
 [hub]
   protocol = ssh
+
 [gist]
   private = yes
   browse = yes
-
-[ghi]
-  token = PLACEHOLDER
 
 #[credential]
   # helper = cache --timeout=300
 
 [push]
   default = matching
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	required = true
+
 [commit]
 	gpgsign = false
-[credential]
-	helper = osxkeychain
+
+[pull]
+	ff = only

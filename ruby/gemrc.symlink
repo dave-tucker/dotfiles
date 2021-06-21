@@ -1,8 +1,0 @@
----
-:update_sources: true
-:sources:
-- https://rubygems.org
-:benchmark: false
-:backtrace: false
-:verbose: true
-gem: --no-document

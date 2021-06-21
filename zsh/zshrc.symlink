@@ -15,9 +15,11 @@ fi
 antigen bundle git
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle ~/.dotfiles/zsh/plugins/cg
 
 # Select the theme
 antigen theme bhilburn/powerlevel9k powerlevel9k
 
 antigen apply
+
+# opam configuration
+test -r /home/dave/.opam/opam-init/init.zsh && . /home/dave/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
