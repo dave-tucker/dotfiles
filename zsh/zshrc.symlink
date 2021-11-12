@@ -1,3 +1,5 @@
+export TERM="xterm-256color"
+
 ZSHA_BASE=$HOME/.zsh_antigen
 source $ZSHA_BASE/antigen.zsh
 POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
