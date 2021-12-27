@@ -4,15 +4,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/dave/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/dave/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/dave/.cache/dein')
-  call dein#begin('/Users/dave/.cache/dein')
+if dein#load_state('/home/dave/.cache/dein')
+  call dein#begin('/home/dave/.cache/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/dave/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('/home/dave/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
   call dein#add('Shougo/neosnippet.vim')
@@ -58,6 +58,7 @@ set number
 filetype plugin indent on
 
 " color
+let g:dracula_colorterm = 0
 color dracula
 
 " python
@@ -91,7 +92,7 @@ let g:ale_linters = {
 " au FileType ocaml setlocal expandtab
 
 " gist
-let g:gist_clip_command = 'pbcopy'
+let g:gist_clip_command = 'xcopy'
 
 " completion
 let g:deoplete#enable_at_startup = 1

@@ -1,0 +1,65 @@
+Create Both
+Expunge Both
+SyncState *
+
+IMAPAccount fastmail
+Host imap.fastmail.com
+Port 993
+User dave@dtucker.co.uk
+PassCmd "rbw get 'Fastmail IMAP'"
+SSLType IMAPS
+
+IMAPStore fastmail-remote
+Account fastmail
+
+MaildirStore fastmail-local
+# The trailing "/" is important
+Path ~/.mail/fastmail/
+Inbox ~/.mail/fastmail/inbox
+SubFolders Verbatim
+
+Channel fastmail-patches
+Far :fastmail-remote:INBOX/"Patches"
+Near :fastmail-local:
+Expunge None
+CopyArrivalDate yes
+Sync All
+Create Near
+SyncState *
+
+IMAPAccount work
+Host imap.gmail.com
+User datucker@redhat.com
+PassCmd "rbw get 'Red Hat Email'"
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore work-remote
+Account work
+
+MaildirStore work-local
+Path ~/.mail/work/
+Inbox ~/.mail/work/inbox
+
+Channel work-inbox
+Far :work-remote:
+Near :work-local:
+Patterns "INBOX"
+
+Channel work-sent
+Far :work-remote:"[Gmail]/Sent Mail"
+Near :work-local:sent
+
+Channel work-trash
+Far :work-remote:"[Gmail]/Trash"
+Near :work-local:trash
+
+Channel work-archive
+Far :work-remote:"[Gmail]/All Mail"
+Near :work-local:archive
+
+Group work
+Channel work-inbox
+Channel work-sent
+Channel work-trash
+Channel work-archive

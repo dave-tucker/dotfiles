@@ -78,7 +78,7 @@
   logr2 = log --stat -M -2
   logit = log --stat -M
   scrub = !git reset --hard && git clean -fd
-    pubdev = !git pub checkout master && git pull && git checkout dev && git rebase master && git checkout master && git merge dev && git wtf
+  pubdev = !git pub checkout master && git pull && git checkout dev && git rebase master && git checkout master && git merge dev && git wtf
   pub = push -u origin
   cs = status
   rv = remote -v
@@ -195,26 +195,12 @@
     # Automatically set up pull to be --rebase
     #autosetuprebase = always
 
-[url "git://github.com/"]
-  insteadOf = "ghg://"
-  pushInsteadOf = "ghg://"
-  # Example: git clone ghg://ntschutta/emacs
-[url "git://github.com/dave-tucker/"]
-  insteadOf = "ghgd://"
-  pushInsteadOf = "ghgd://"
-  # Example: git clone ghgd://dotfiles
 [url "git@github.com:"]
   insteadOf = "ghs://"
   pushInsteadOf = "ghs://"
 [url "git@github.com:dave-tucker/"]
   insteadOf = "ghsd://"
   pushInsteadOf = "ghsd://"
-[url "https://github.com/"]
-  insteadOf = "ghh://"
-  pushInsteadOf = "ghh://"
-[url "https://github.com/dave-tucker/"]
-  insteadOf = "ghhd://"
-  pushInsteadOf = "ghhd://"
 
 [http]
   # proxy=http://something
@@ -244,3 +230,5 @@
 	ff = only
 [init]
 	defaultBranch = main
+[sendemail]
+	smtpserver = /usr/bin/msmtp

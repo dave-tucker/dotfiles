@@ -1,0 +1,22 @@
+defaults
+auth           	on
+tls            	on
+tls_trust_file 	/etc/ssl/certs/ca-bundle.crt
+logfile        	~/.msmtp.log
+
+account        	fastmail
+host 		smtp.fastmail.com
+port 		587
+from		dave@dtucker.co.uk
+user		dave@dtucker.co.uk
+passwordeval	rbw get "Fastmail SMTP"
+
+account		work
+host		smtp.gmail.com
+port		587
+from		datucker@redhat.com
+user		datucker@redhat.com
+passwordeval	rbw get "Red Hat Email"
+tls_starttls	on
+
+account default : fastmail

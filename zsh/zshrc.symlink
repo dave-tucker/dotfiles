@@ -2,26 +2,29 @@ export TERM="xterm-256color"
 
 ZSHA_BASE=$HOME/.zsh_antigen
 source $ZSHA_BASE/antigen.zsh
-POWERLEVEL9K_INSTALLATION_PATH=$ANTIGEN_BUNDLES/bhilburn/powerlevel9k
 
 DEFAULT_USER=$USER
+EDITOR=vim
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
-if [ "$(uname -s)"  = "Darwin" ]; then
-	antigen bundle osx
-fi
-
 antigen bundle git
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-# Select the theme
-antigen theme bhilburn/powerlevel9k powerlevel9k
-
 antigen apply
+
+# Prompt
+eval "$(starship init zsh)"
+
+# python config
+eval "$(pyenv init -)"
 
 # opam configuration
 test -r /home/dave/.opam/opam-init/init.zsh && . /home/dave/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# aliases
+alias -g grep='rg'
+alias -g ls='exa'

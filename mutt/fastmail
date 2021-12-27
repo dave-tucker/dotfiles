@@ -1,0 +1,9 @@
+set sendmail="/usr/bin/msmtp -a fastmail"
+set folder = "~/.mail/fastmail"
+set spoolfile = "+inbox"
+set postponed = "+drafts"
+set trash = "+trash"
+set record = "+sent"
+
+set from = "Dave Tucker <dave@dtucker.co.uk>"
+set realname = "Dave Tucker"

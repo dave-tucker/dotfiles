@@ -1,0 +1,12 @@
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'dracula/tmux'
+
+# Dracula config
+set -g @dracula-show-powerline true
+set -g @dracula-git-disable-status true
+set -g @dracula-show-fahrenheit false
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

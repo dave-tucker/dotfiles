@@ -1,0 +1,18 @@
+set envelope_from=yes
+set use_from=yes
+set edit_headers=yes
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+set mailcap_path="~/.mutt/mailcap"
+auto_view text/html
+# alternative_order text/plain text/html
+
+folder-hook 'work' 'source ~/.mutt/work'
+folder-hook 'personal' 'source ~/.mutt/fastmail'
+macro index 1 "<change-folder> = ~/.mail/work/inbox/<enter>"
+macro index 2 "<change-folder> = ~/.mail/fastmail/inbox<enter>"
+set move = no
+
+source ~/.mutt/dracula.muttrc
+source ~/.mutt/work

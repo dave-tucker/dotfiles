@@ -2,6 +2,18 @@
 font:
   normal:
     family: FiraCode Nerd Font Mono
+  bold:
+    family: FiraCode Nerd Font Mono
+    style: Bold
+  italic:
+    family: FiraCode Nerd Font Mono
+    style: Italic
+  bold_italic:
+    family: FiraCode Nerd Font Mono
+    style: Bold Italic
+  size: 11.0
+
+background_opacity: 0.9
 
 # Dracula Colors
 colors:

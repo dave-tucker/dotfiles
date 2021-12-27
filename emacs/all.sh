@@ -4,7 +4,8 @@ set -e
 
 cd $(dirname $0)
 
-# Install spacemacs
+# Install doom-emacs
 if [ ! -d ~/.emacs.d ]; then
-    git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+	git clone --depth 1 https://github.com/hlissner/doom-emacs ~/.emacs.d
+	~/.emacs.d/bin/doom install
 fi
