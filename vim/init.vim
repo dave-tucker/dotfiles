@@ -19,7 +19,6 @@ if dein#load_state('/home/dave/.cache/dein')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-go', {'build': 'make'})
-  "call dein#add('ocaml/merlin', {'rtp': 'vim/merlin'})
   call dein#add('fatih/vim-go')
   call dein#add('scrooloose/nerdtree')
   call dein#add('scrooloose/nerdcommenter')
@@ -62,8 +61,8 @@ let g:dracula_colorterm = 0
 color dracula
 
 " python
-let g:python_host_prog = '/usr/local/opt/pyenv/versions/neovim2/bin/python'
-let g:python3_host_prog = '/usr/local/opt/pyenv/versions/neovim3/bin/python'
+let g:python_host_prog = '~/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
 
 " golang
 filetype plugin indent off
@@ -81,15 +80,6 @@ let g:ale_linters = {
 \}
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-
-" ocaml
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-execute "set rtp^=" . g:opamshare . "/ocp-indent/vim"
-let g:ale_linters = {
-\    'ocaml': [],
-\}
-" au FileType ocaml setlocal expandtab
 
 " gist
 let g:gist_clip_command = 'xcopy'

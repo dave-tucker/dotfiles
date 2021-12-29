@@ -4,6 +4,9 @@ set -e
 
 cd $(dirname $0)
 
+# C Dev Tools
+sudo dnf groupinstall -qy "C Development Tools and Libraries"
+
 # Vivaldi
 sudo dnf config-manager --add-repo https://repo.vivaldi.com/archive/vivaldi-fedora.repo
 

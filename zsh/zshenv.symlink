@@ -10,6 +10,7 @@ export PATH=${PATH}:${GOPATH}/bin
 export PYENV_ROOT=${HOME}/.pyenv
 export PATH=${PATH}:${PYENV_ROOT}/bin
 eval $(pyenv init --path)
+eval "$(pyenv virtualenv-init -)"
 
 # Rust
 export PATH=${PATH}:${HOME}/.cargo/bin
