@@ -173,6 +173,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+bindsym $mod+period exec rofimoji
+
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
@@ -198,3 +200,4 @@ bar {
 		binding_mode       #FF5555 #FF5555 #F8F8F2
 	}
 }
+
