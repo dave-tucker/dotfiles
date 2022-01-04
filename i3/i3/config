@@ -12,6 +12,8 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:Overpass 10
 
+exec --no-startup-id (autorandr --change)&
+
 # Picom for compositing. Because transparency
 exec --no-startup-id killall -q picom; picom -b --config ~/.config/picom.conf
 

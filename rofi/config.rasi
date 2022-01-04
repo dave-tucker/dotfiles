@@ -12,7 +12,7 @@
     drac-red: #ff5555;
     drac-yel: #f1fa8c;
 
-    font: "Fira Code Nerd Font Mono 12";
+    font: "Fira Code Nerd Font Mono 24";
 
     foreground: @drac-fgd;
     background: @drac-bgd;

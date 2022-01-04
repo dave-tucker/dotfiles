@@ -33,3 +33,5 @@ libffi-devel
 xz-devel
 python3-virtualenv
 rofimoji
+musl-libc
+bpftool
