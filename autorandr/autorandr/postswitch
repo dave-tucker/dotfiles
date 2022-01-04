@@ -1,0 +1,4 @@
+#!/bin/sh
+
+~/.fehbg
+betterlockscreen -u ~/.desktop/wallpaper.png
