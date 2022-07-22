@@ -5,7 +5,7 @@ set -e
 cd $(dirname $0)
 
 if [ ! -f /usr/local/bin/starship ]; then
-    curl -sS https://starship.rs/install.sh | sh -s -y
+    curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
 mkdir -p ~/.config
