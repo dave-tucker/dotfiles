@@ -1,2 +1,4 @@
 com.discordapp.Discord
 com.slack.Slack
+org.mozilla.Thunderbird
+org.inkscape.Inkscape

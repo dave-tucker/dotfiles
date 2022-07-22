@@ -23,5 +23,5 @@ Dotfiles are all those `.` files that sit in your `~` and customize your system.
 
 ## License
 
-Copyright 2014-2021 Dave Tucker
+Copyright 2014-2022 Dave Tucker
 Licensed under the MIT License

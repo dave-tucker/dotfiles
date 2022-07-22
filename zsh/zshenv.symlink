@@ -1,18 +1,5 @@
 # Misc
 export PATH=${PATH}:${HOME}/.local/bin
 
-# Go
-export PATH=${PATH}:/usr/local/go/bin
-export GOPATH=${HOME}/go
-export PATH=${PATH}:${GOPATH}/bin
-
-# Python
-export PYENV_ROOT=${HOME}/.pyenv
-export PATH=${PATH}:${PYENV_ROOT}/bin
-eval $(pyenv init --path)
-eval "$(pyenv virtualenv-init -)"
-
 # Rust
 export PATH=${PATH}:${HOME}/.cargo/bin
-
-systemctl --user import-environment PATH

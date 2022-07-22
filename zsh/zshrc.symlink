@@ -19,12 +19,6 @@ antigen apply
 # Prompt
 eval "$(starship init zsh)"
 
-# python config
-eval "$(pyenv init -)"
-
-# opam configuration
-test -r /home/dave/.opam/opam-init/init.zsh && . /home/dave/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 # aliases
-alias -g grep='rg'
-alias -g ls='exa'
+# alias -g grep='rg'
+# alias -g ls='exa'

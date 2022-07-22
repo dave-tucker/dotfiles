@@ -9,5 +9,5 @@ sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub
 
 xargs sudo flatpak -y install < packages.txt
 
-sudo flatpak override --filesystem=~/.themes
-sudo flatpak override --env=GTK_THEME=Dracula
+#sudo flatpak override --filesystem=~/.themes
+#sudo flatpak override --env=GTK_THEME=Dracula

@@ -98,4 +98,10 @@ install_dotfiles () {
   done
 }
 
+run_installers () {
+    # find installers and run them interactively
+    find . -name install.sh | while read installer ; do sh -c "${installer}" > /dev/null ; done
+}
+
 install_dotfiles
+run_installers
