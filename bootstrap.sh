@@ -4,7 +4,7 @@
 
 DOTFILES_ROOT="`pwd`"
 
-set -e
+set -ex
 
 echo ''
 
@@ -99,9 +99,34 @@ install_dotfiles () {
 }
 
 run_installers () {
+    target=$1
+    if [ -z "$target" ]; then
+      echo "target required"
+      exit 1
+    fi
+    
+    excludes=""
+    case "$target" in
+      "host")
+        ;;
+      "remote")
+        excludes='flatpak|toolbox|systemd|gtk|fonts|alacritty'
+        ;;
+      *)
+        echo "unsupported target: $target"
+        exit 1
+        ;;
+    esac
+
     # find installers and run them interactively
-    find . -name install.sh | while read installer ; do sh -c "${installer}" > /dev/null ; done
+    find . -name install.sh | egrep -v "${excludes}" | while read installer ; do echo "INSTALL ${installer}"; sh -c "${installer}" > /dev/null ; done
 }
 
+target=$1
+if [ -z "$target" ]; then
+  echo "target required"
+  exit 1
+fi
+
 install_dotfiles
-run_installers
+run_installers "$target"
