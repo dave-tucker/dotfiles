@@ -3,3 +3,7 @@ export PATH=${PATH}:${HOME}/.local/bin
 
 # Rust
 export PATH=${PATH}:${HOME}/.cargo/bin
+
+# Wasmtime
+export WASMTIME_HOME="${HOME}/.wasmtime"
+export PATH="${WASMTIME_HOME}/bin:$PATH"
