@@ -35,7 +35,7 @@
   quotepath = false
   autocrlf = input
   safecrlf = warn
-  editor = vim
+  editor = nvim
 
 [alias]
   aa = add --all
@@ -182,7 +182,6 @@
 
 [diff]
   tool = p4merge
-# renames = true
 
 [mergetool]
   prompt = false
@@ -191,19 +190,12 @@
 [merge]
   tool = p4merge
 
-[branch]
-    # Automatically set up pull to be --rebase
-    #autosetuprebase = always
-
-[url "git@github.com:"]
-  insteadOf = "ghs://"
-  pushInsteadOf = "ghs://"
-[url "git@github.com:dave-tucker/"]
-  insteadOf = "ghsd://"
-  pushInsteadOf = "ghsd://"
-
-[http]
-  # proxy=http://something
+[url "https://github.com"]
+  insteadOf = "gh://"
+  pushInsteadOf = "gh://"
+[url "https://github.com/dave-tucker"]
+  insteadOf = "ghdt://"
+  pushInsteadOf = "ghdt://"
 
 [hub]
   protocol = ssh
@@ -212,23 +204,30 @@
   private = yes
   browse = yes
 
-#[credential]
-  # helper = cache --timeout=300
-
 [push]
   default = matching
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
 
 [commit]
 	gpgsign = false
 
 [pull]
 	ff = only
+
 [init]
 	defaultBranch = main
+
 [sendemail]
 	smtpserver = /usr/bin/msmtp
+
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

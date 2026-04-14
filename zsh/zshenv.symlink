@@ -1,5 +1,6 @@
 # Misc
 export PATH=${PATH}:${HOME}/.local/bin
+export PATH=${PATH}:${HOME}/.npm-global/bin
 
 # Rust
 export PATH=${PATH}:${HOME}/.cargo/bin

@@ -1,12 +1,47 @@
-# List of plugins
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+set -g mouse on
+setw -g mode-keys vi
+set -sg escape-time 0
+set -g history-limit 50000
+set -g base-index 1
+setw -g pane-base-index 1
+set -g renumber-windows on
+
+set -g default-terminal "tmux-256color"
+set -ga terminal-overrides ",*256col*:Tc,xterm-ghostty:Tc"
+
+set -g set-clipboard on
+
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+bind c new-window   -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-selection-and-cancel
+
+bind r source-file ~/.tmux.conf \; display "reloaded"
+
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'christoomey/vim-tmux-navigator'
 set -g @plugin 'dracula/tmux'
 
-# Dracula config
-set -g @dracula-show-powerline true
-set -g @dracula-git-disable-status true
-set -g @dracula-show-fahrenheit false
+set -g @continuum-restore 'on'
+set -g @continuum-save-interval '15'
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+set -g @dracula-plugins "time"
+set -g @dracula-show-powerline true
+set -g @dracula-show-left-icon session
+set -g @dracula-show-flags true
+set -g @dracula-show-timezone false
+set -g @dracula-military-time true
+
 run '~/.tmux/plugins/tpm/tpm'

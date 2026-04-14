@@ -110,7 +110,7 @@ run_installers () {
       "host")
         ;;
       "remote")
-        excludes='flatpak|toolbox|systemd|gtk|fonts|alacritty'
+        excludes='flatpak toolbox systemd gtk fonts alacritty'
         ;;
       *)
         echo "unsupported target: $target"
@@ -119,7 +119,7 @@ run_installers () {
     esac
 
     # find installers and run them interactively
-    find . -name install.sh | egrep -v "${excludes}" | while read installer ; do echo "INSTALL ${installer}"; sh -c "${installer}" > /dev/null ; done
+    find . -name install.sh | grep -Ev "${excludes}" | while read installer ; do echo "INSTALL ${installer}"; sh -c "${installer}" > /dev/null ; done
 }
 
 target=$1

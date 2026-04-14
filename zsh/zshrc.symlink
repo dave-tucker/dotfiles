@@ -4,7 +4,7 @@ ZSHA_BASE=$HOME/.zsh_antigen
 source $ZSHA_BASE/antigen.zsh
 
 DEFAULT_USER=$USER
-EDITOR=vim
+EDITOR=nvim
 
 # Load the oh-my-zsh's library.
 antigen use oh-my-zsh
@@ -19,6 +19,4 @@ antigen apply
 # Prompt
 eval "$(starship init zsh)"
 
-# aliases
-# alias -g grep='rg'
-# alias -g ls='exa'
+source $HOME/.dotfiles/zsh/aliases.zsh
