@@ -5,30 +5,11 @@
   email = dave@dtucker.co.uk
 
 [color]
-# ui = true is a superset of all the more specific color options
-#  as documented at http://book.git-scm.com/5_customizing_git.html
-# When set to always, always use colors in all git commands which are capable of colored output.
-# When false, never. When set to true or auto, use colors only when the output is to the terminal.
-# When more specific variables of color.* are set, they always take precedence over this setting.
-# Defaults to false.
   ui = auto
-  # diff = auto
-  # status = auto
-  # branch = auto
 
 [color "branch"]
-  #current = yellow reverse
-  #local = yellow
-  #remote = green
 [color "diff"]
-  #meta = yellow bold
-  #frag = magenta bold
-  #old = red bold
-  #new = green bold
 [color "status"]
-  #added = yellow
-  #changed = green
-  #untracked = cyan
 
 [core]
   excludesfile = ~/.gitignore
@@ -89,9 +70,7 @@
   orphanl = !git log --pretty=oneline --abbrev-commit --graph --decorate `git reflog | cut -c1-7`
   k = !exec gitk --all&
   testecho1 = !sh -c 'echo with slash: zero=$0 one=$1 two=$2' -
-  # te1 RESULT: with slash: zero=- one=A two=B
   testecho2 = !sh -c 'echo without slash: zero=$0 one=$1 two=$2'
-  # te2 RESULT: without slash: zero=A one=B two=C
   st = status
   l = log --stat -C
   ll = log --stat -C -3
@@ -121,9 +100,7 @@
   busythisweek = shortlog --since=one.week.ago
   configpushtracking = config push.default tracking
   configpushnothing = config push.default nothing
-  configpushtracking = config push.default matching
   configpushcurrent = config push.default current
-
   fixup = "!sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
   squash = "!sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -"
   ccfq = "!sh -c 'git add $1 && git commit -m\"Placeholder\"' -"
@@ -134,18 +111,6 @@
   gwcl = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   rlog = log --color-words --stat -3
   lm = log --stat -M
-
-  # Legit
-  legitsync = !legit sync \"$@\"
-  legitswitch = !legit switch \"$@\"
-  legitbranches = !legit branches
-  legitsprout = !legit sprout \"$@\"
-  legitunpublish = !legit unpublish \"$@\"
-  legitharvest = !legit harvest \"$@\"
-  legitpublish = !legit publish \"$@\"
-  legitgraft = !legit graft \"$@\"
-
-  #https://git.wiki.kernel.org/index.php?title=Aliases
   aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
   graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
   abbr = "!sh -c 'git rev-list --all | grep ^$1 | while read commit; do git --no-pager log -n1 --pretty=format:\"%H %ci %an %s%n\" $commit; done' -"
@@ -170,7 +135,6 @@
   noderelnotes = git log --graph --pretty=format:'%h%d %s (%an)'
   configsimplelog = config format.pretty oneline
 
-
 [apply]
   whitespace = nowarn
 
@@ -180,15 +144,9 @@
 [difftool]
   prompt = false
 
-[diff]
-  tool = p4merge
-
 [mergetool]
   prompt = false
   keepBackup = false
-
-[merge]
-  tool = p4merge
 
 [url "https://github.com"]
   insteadOf = "gh://"
@@ -221,13 +179,10 @@
 [init]
 	defaultBranch = main
 
-[sendemail]
-	smtpserver = /usr/bin/msmtp
-
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 
 [credential "https://gist.github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential

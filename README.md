@@ -1,27 +1,57 @@
-# DTDD - dave_tucker does dotfiles
+# dotfiles
 
-## Dotfiles
+Managed with [chezmoi](https://chezmoi.io).
 
-Dotfiles are all those `.` files that sit in your `~` and customize your system. Here are mine.
+## What's managed
 
-# Installation
+| Tool | Config |
+|---|---|
+| [fish](https://fishshell.com) | `~/.config/fish/` |
+| [starship](https://starship.rs) | `~/.config/starship/starship.toml` |
+| [ghostty](https://ghostty.org) | `~/.config/ghostty/config` |
+| [neovim](https://neovim.io) | `~/.config/nvim/` |
+| [tmux](https://github.com/tmux/tmux) + [TPM](https://github.com/tmux-plugins/tpm) | `~/.tmux.conf` |
+| [git](https://git-scm.com) | `~/.gitconfig` |
+| [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts) | installed everywhere |
+| [Rust](https://www.rust-lang.org) + [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter) | via mise |
+| [Go](https://go.dev) | via mise |
+| [uv](https://github.com/astral-sh/uv) | via mise |
+| [Node.js](https://nodejs.org) | via mise (lts) |
+| [pi-coding-agent](https://github.com/mariozechner/pi-coding-agent) | via mise npm tool |
 
-    # install cross-platform things and dotfiles
-    make
+## Prerequisites
 
-    # just the dotfiles
-    make dotfiles
+Install these before running chezmoi. Use your system package manager:
 
-    # install os-specific things
-    make mac | linux | windows
+- `fish`
+- `tmux`
+- `neovim`
+- `ghostty`
+- `git` + `git-lfs`
+- `gh` (GitHub CLI)
+- `chezmoi`
+- `zoxide`, `fzf`, `ripgrep`, `fd`
+- `gh`, `git-lfs` (Fedora RPMs)
 
-## Thanks
+## Bootstrap
 
-- [@holman](https://github.com/holman/dotfiles) - inspiration for organisation and install scripts
-- [@skwp](https://github.com/skwp/dotfiles) - another inspiration dotfiles repo
-- [@matthewmccullough](https://github.com/matthewmccullough/dotfiles) - for sharing his gitconfig
+```sh
+chezmoi init --apply dave-tucker/dotfiles
+```
+
+## Daily use
+
+```sh
+# Pull latest and apply
+chezmoi update
+
+# Edit a managed file
+chezmoi edit ~/.config/fish/config.fish
+
+# See what would change
+chezmoi diff
+```
 
 ## License
 
-Copyright 2014-2022 Dave Tucker
-Licensed under the MIT License
+Copyright 2014-2026 Dave Tucker. Licensed under the MIT License.

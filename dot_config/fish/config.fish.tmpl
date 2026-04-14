@@ -1,0 +1,25 @@
+if status is-interactive
+    # PATH
+    fish_add_path $HOME/.local/bin
+    fish_add_path $HOME/.wasmtime/bin
+
+    # Wasmtime
+    set -x WASMTIME_HOME $HOME/.wasmtime
+
+    # mise - dev tool version manager
+    mise activate fish | source
+
+{{ if eq .chezmoi.os "darwin" }}
+    # Homebrew
+    fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
+{{ end }}
+
+    # Aliases
+    alias vim nvim
+    alias vi nvim
+    alias grep rg
+    alias g git
+
+    # Starship prompt
+    starship init fish | source
+end

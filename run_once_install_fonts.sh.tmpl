@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e
+
+{{ if eq .chezmoi.os "darwin" -}}
+FONT_DIR="$HOME/Library/Fonts"
+{{ else -}}
+FONT_DIR="$HOME/.fonts"
+{{ end -}}
+
+mkdir -p "$FONT_DIR"
+
+TMPDIR=$(mktemp -d)
+trap 'rm -rf "$TMPDIR"' EXIT
+
+curl -fsSL -o "$TMPDIR/FiraCode.zip" \
+    https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/FiraCode.zip
+
+unzip -u -d "$FONT_DIR" "$TMPDIR/FiraCode.zip" '*.ttf'
+
+{{ if eq .chezmoi.os "linux" -}}
+fc-cache -f "$FONT_DIR"
+{{ end -}}

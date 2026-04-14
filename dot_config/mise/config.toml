@@ -1,0 +1,9 @@
+[tools]
+"aqua:astral-sh/uv" = "latest"
+"aqua:starship/starship" = "latest"
+"aqua:tree-sitter/tree-sitter" = "latest"
+go = "1.26.2"
+node = "lts"
+"npm:@anthropic-ai/claude-code" = "latest"
+"npm:@mariozechner/pi-coding-agent" = "0.67.2"
+rust = "stable"

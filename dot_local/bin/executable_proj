@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dir="$(pwd)"
+name="$(basename "$dir")"
+session="${name//./_}"   # tmux dislikes dots
+
+if tmux has-session -t "$session" 2>/dev/null; then
+  if [ -n "${TMUX:-}" ]; then
+    exec tmux switch-client -t "$session"
+  else
+    exec tmux attach -t "$session"
+  fi
+fi
+
+tmux new-session -d -s "$session" -c "$dir" -n edit
+tmux new-window  -t "$session" -c "$dir" -n agent
+tmux new-window  -t "$session" -c "$dir" -n shell
+tmux new-window  -t "$session" -c "$dir" -n logs
+tmux select-window -t "$session:edit"
+
+if [ -n "${TMUX:-}" ]; then
+  exec tmux switch-client -t "$session"
+else
+  exec tmux attach -t "$session"
+fi

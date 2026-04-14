@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
-
-cd $(dirname $0)
 
 if [ ! -d ~/.tmux/plugins/tpm ]; then
     mkdir -p ~/.tmux/plugins
