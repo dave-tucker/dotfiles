@@ -21,17 +21,10 @@ Managed with [chezmoi](https://chezmoi.io).
 
 ## Prerequisites
 
-Install these before running chezmoi. Use your system package manager:
+- **macOS**: Xcode CLI tools, Homebrew, chezmoi
+- **Fedora**: chezmoi
 
-- `fish`
-- `tmux`
-- `neovim`
-- `ghostty`
-- `git` + `git-lfs`
-- `gh` (GitHub CLI)
-- `chezmoi`
-- `zoxide`, `fzf`, `ripgrep`, `fd`
-- `gh`, `git-lfs` (Fedora RPMs)
+Everything else (fish, tmux, neovim, ghostty, gh, git-lfs, zoxide, fzf, ripgrep, fd) is installed automatically on first run.
 
 ## Bootstrap
 

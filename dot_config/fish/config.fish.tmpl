@@ -1,13 +1,12 @@
 if status is-interactive
     # PATH
     fish_add_path $HOME/.local/bin
-    fish_add_path $HOME/.wasmtime/bin
-
-    # Wasmtime
-    set -x WASMTIME_HOME $HOME/.wasmtime
 
     # mise - dev tool version manager
     mise activate fish | source
+
+    # zoxide - a better cd
+    zoxide init fish | source
 
 {{ if eq .chezmoi.os "darwin" }}
     # Homebrew

@@ -25,6 +25,7 @@ SETUVAR fish_color_selection:\x2d\x2dbold\x1e\x2d\x2dbackground\x3d44475a
 SETUVAR fish_color_status:ff5555
 SETUVAR fish_color_user:8be9fd
 SETUVAR fish_color_valid_path:\x2d\x2dunderline\x3dsingle
+SETUVAR fish_greeting:\x1d
 SETUVAR fish_key_bindings:fish_default_key_bindings
 SETUVAR fish_pager_color_background:\x1d
 SETUVAR fish_pager_color_completion:f8f8f2
@@ -39,3 +40,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3d44475a
 SETUVAR fish_pager_color_selected_completion:f8f8f2
 SETUVAR fish_pager_color_selected_description:6272a4
 SETUVAR fish_pager_color_selected_prefix:8be9fd
+SETUVAR fish_user_paths:/home/dave/\x2elocal/bin
