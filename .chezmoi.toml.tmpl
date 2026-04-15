@@ -1,3 +1,8 @@
+{{- $is_work := false -}}
+{{- if eq .chezmoi.hostname "datucker1-mac" -}}
+{{-   $is_work = true -}}
+{{- end -}}
+
 [git]
   autoCommit = false
   autoPush = false
@@ -10,3 +15,12 @@
         {{ printf "%q" "{{ .Source }}" }},
         {{ printf "%q" "{{ .Target }}" }},
     ]
+
+[data]
+    is_work = {{ $is_work }}
+    {{- if $is_work -}}
+    {{- $project_id := promptStringOnce . "vertex_project_id" "Vertex Project ID" }}
+    vertex_project_id = {{ $project_id | quote }}
+    {{- $region := promptStringOnce . "vertex_region" "Vertex Region" }}
+    vertex_region = {{ $region | quote }}
+    {{- end -}}

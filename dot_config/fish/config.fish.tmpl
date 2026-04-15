@@ -1,9 +1,22 @@
 if status is-interactive
+    fish_config theme choose "Dracula Official"
+
     # PATH
     fish_add_path $HOME/.local/bin
 
     # mise - dev tool version manager
     mise activate fish | source
+
+    # ENV
+    {{- if (index . "is_work") }}
+    # Claude Code / Vertex AI
+    set -gx CLAUDE_CODE_USE_VERTEX 1
+    set -gx CLOUD_ML_REGION {{ .vertex_region | quote }}
+    set -gx ANTHROPIC_VERTEX_PROJECT_ID {{ .vertex_project_id | quote }}
+    # Pi Coding Agent Vertex
+    set -gx GOOGLE_CLOUD_PROJECT {{ .vertex_project_id | quote }}
+    set -gx GOOGLE_CLOUD_LOCATION {{ .vertex_region | quote }}
+    {{- end }}
 
     # zoxide - a better cd
     zoxide init fish | source
