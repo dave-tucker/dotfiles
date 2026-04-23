@@ -5,5 +5,7 @@
 go = "1.26.2"
 node = "lts"
 "npm:@anthropic-ai/claude-code" = "latest"
-"npm:@mariozechner/pi-coding-agent" = "0.67.2"
+"npm:@mariozechner/pi-coding-agent" = "latest"
 rust = "stable"
+"pipx:huggingface_hub" = "latest"
+gh = "0.29.0"
