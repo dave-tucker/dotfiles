@@ -18,6 +18,8 @@ if status is-interactive
     set -gx GOOGLE_CLOUD_LOCATION {{ .vertex_region | quote }}
     {{- end }}
 
+    set EDITOR nvim
+
     # zoxide - a better cd
     zoxide init fish | source
 
