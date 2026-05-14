@@ -23,7 +23,7 @@ if status is-interactive
     # zoxide - a better cd
     zoxide init fish | source
 
-    {{-if eq .chezmoi.os "darwin" }}
+    {{- if eq .chezmoi.os "darwin" }}
     # Homebrew
     fish_add_path /opt/homebrew/bin /opt/homebrew/sbin
     {{- end }}
