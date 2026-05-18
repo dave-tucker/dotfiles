@@ -1,0 +1,82 @@
+{
+	"$schema": "https://raw.githubusercontent.com/earendil-works/pi-mono/main/packages/coding-agent/src/modes/interactive/theme/theme-schema.json",
+	"name": "dracula",
+	"vars": {
+		"background": "#282A36",
+		"foreground": "#F8F8F2",
+		"selection": "#44475A",
+		"comment": "#6272A4",
+		"red": "#FF5555",
+		"orange": "#FFB86C",
+		"yellow": "#F1FA8C",
+		"green": "#50FA7B",
+		"purple": "#BD93F9",
+		"cyan": "#8BE9FD",
+		"pink": "#FF79C6",
+		"darkBg": "#21222C"
+	},
+	"colors": {
+		"accent": "purple",
+		"border": "comment",
+		"borderAccent": "purple",
+		"borderMuted": "selection",
+		"success": "green",
+		"error": "red",
+		"warning": "orange",
+		"muted": "comment",
+		"dim": "selection",
+		"text": "",
+		"thinkingText": "comment",
+
+		"selectedBg": "selection",
+		"userMessageBg": "selection",
+		"userMessageText": "",
+		"customMessageBg": "darkBg",
+		"customMessageText": "",
+		"customMessageLabel": "pink",
+		"toolPendingBg": "darkBg",
+		"toolSuccessBg": "#1E3A2F",
+		"toolErrorBg": "#3A1E1E",
+		"toolTitle": "purple",
+		"toolOutput": "",
+
+		"mdHeading": "purple",
+		"mdLink": "pink",
+		"mdLinkUrl": "cyan",
+		"mdCode": "green",
+		"mdCodeBlock": "",
+		"mdCodeBlockBorder": "selection",
+		"mdQuote": "comment",
+		"mdQuoteBorder": "comment",
+		"mdHr": "comment",
+		"mdListBullet": "cyan",
+
+		"toolDiffAdded": "green",
+		"toolDiffRemoved": "red",
+		"toolDiffContext": "comment",
+
+		"syntaxComment": "comment",
+		"syntaxKeyword": "pink",
+		"syntaxFunction": "green",
+		"syntaxVariable": "foreground",
+		"syntaxString": "yellow",
+		"syntaxNumber": "purple",
+		"syntaxType": "cyan",
+		"syntaxOperator": "pink",
+		"syntaxPunctuation": "comment",
+
+		"thinkingOff": "selection",
+		"thinkingMinimal": "comment",
+		"thinkingLow": "cyan",
+		"thinkingMedium": "purple",
+		"thinkingHigh": "pink",
+		"thinkingXhigh": "red",
+
+		"bashMode": "orange"
+	},
+	"export": {
+		"pageBg": "#282A36",
+		"cardBg": "#343746",
+		"infoBg": "#3A3528"
+	}
+}

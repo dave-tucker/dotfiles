@@ -1,9 +1,9 @@
 {
   "providers": {
     "donatello": {
-      "baseUrl": "https://llama-swap.6granaryway.co.uk/v1",
+      "baseUrl": {{ keyring "donatello" "url" | quote }},
       "api": "openai-responses",
-      "apiKey": "sk-secret",
+      "apiKey": {{ keyring "donatello" "token" | quote }},
       "contextWindow": 131072,
       "maxTokens": 32768,
       "models": [
