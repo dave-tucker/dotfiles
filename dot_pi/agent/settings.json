@@ -6,6 +6,8 @@
   "packages": [
     "npm:context-mode",
     "npm:@juicesharp/rpiv-ask-user-question",
-    "npm:@juicesharp/rpiv-btw"
-  ]
+    "npm:@juicesharp/rpiv-btw",
+    "npm:@twogiants/pi-anthropic-vertex"
+  ],
+  "theme": "dracula"
 }
