@@ -1,5 +1,6 @@
 {
   "providers": {
+    {{- if not (index . "is_work") }}
     "donatello": {
       "baseUrl": {{ keyring "donatello" "url" | quote }},
       "api": "openai-responses",
@@ -10,5 +11,6 @@
         { "id": "qwen3.6" }
       ]
     }
+    {{- end}}
   }
 }
