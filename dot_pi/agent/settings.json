@@ -1,13 +1,21 @@
 {
-  "lastChangelogVersion": "0.74.0",
+  "lastChangelogVersion": "0.75.4",
   "defaultProvider": "donatello",
-  "defaultModel": "qwen3.6",
+  "defaultModel": "qwen3.6-coding",
   "defaultThinkingLevel": "medium",
   "packages": [
     "npm:context-mode",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-btw",
     "npm:@twogiants/pi-anthropic-vertex"
+  ],
+  "transport": "auto",
+  "enabledModels": [
+    "openrouter/deepseek/deepseek-v4-flash",
+    "openrouter/deepseek/deepseek-v4-pro",
+    "openai-codex/gpt-5.4-mini",
+    "openai-codex/gpt-5.4",
+    "donatello/qwen3.6-coding"
   ],
   "theme": "dracula"
 }
