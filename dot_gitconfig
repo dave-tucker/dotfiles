@@ -186,3 +186,6 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/usr/bin/env gh auth git-credential
+
+[credential]
+	helper = /usr/libexec/git-core/git-credential-libsecret
