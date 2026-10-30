@@ -2,6 +2,15 @@
   "mcpServers": {
     "context-mode": {
       "command": "context-mode"
+    },
+    "rea": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "rea-agents@6.7.0",
+        "mcp"
+      ]
     }
   }
 }
