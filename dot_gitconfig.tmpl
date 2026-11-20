@@ -179,6 +179,16 @@
 [init]
 	defaultBranch = main
 
+{{- if eq .chezmoi.os "darwin" }}
+[credential]
+	helper =
+	helper = osxkeychain
+{{- else if eq .chezmoi.os "linux" }}
+[credential]
+	helper =
+	helper = /usr/libexec/git-core/git-credential-libsecret
+{{- end }}
+
 [credential "https://github.com"]
 	helper =
 	helper = !/usr/bin/env gh auth git-credential
@@ -186,6 +196,3 @@
 [credential "https://gist.github.com"]
 	helper =
 	helper = !/usr/bin/env gh auth git-credential
-
-[credential]
-	helper = /usr/libexec/git-core/git-credential-libsecret

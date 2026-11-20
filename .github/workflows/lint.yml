@@ -31,7 +31,6 @@ jobs:
           mise_toml: |
             [tools]
             actionlint = "1.7.12"
-            chezmoi = "2.70.1"
             jq = "1.8.2"
             "npm:prettier" = "3.10.1"
             shellcheck = "0.11.0"

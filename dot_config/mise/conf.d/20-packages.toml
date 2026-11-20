@@ -13,6 +13,7 @@
 "dnf:fish" = { os = "linux" }
 "dnf:fzf" = { os = "linux" }
 "dnf:git" = { os = "linux" }
+"dnf:git-credential-libsecret" = { os = "linux" }
 "dnf:git-lfs" = { os = "linux" }
 "dnf:ghostty" = { os = "linux" }
 "dnf:neovim" = { os = "linux" }
