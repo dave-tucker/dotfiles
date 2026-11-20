@@ -1,0 +1,34 @@
+{{- $address := get . "work_mail_address" -}}
+{{- if not $address -}}
+{{-   $matches := regexFindAll `(?m)^User[ \t]+[^\r\n]+` (include (joinPath .chezmoi.homeDir ".config/work-mail-sync/mbsyncrc")) 1 -}}
+{{-   if $matches -}}
+{{-     $address = trimAll "\"" (trim (regexReplaceAll `^User[ \t]+` (first $matches) "")) -}}
+{{-   end -}}
+{{- end -}}
+{{- if not (regexMatch `^[a-zA-Z0-9._+%-]+@[a-zA-Z0-9.-]+$` $address) -}}
+{{- fail "Set work_mail_address in your local chezmoi data." -}}
+{{- end }}
+IMAPAccount work
+Host imap.gmail.com
+Port 993
+User {{ $address }}
+Pass /tokens/work-gmail.json
+TLSType IMAPS
+AuthMechs XOAUTH2
+
+IMAPStore work-remote
+Account work
+
+MaildirStore work-full-local
+Path /mail/
+Inbox /mail/inbox
+SubFolders Verbatim
+
+Channel work-full
+Far :work-remote:
+Near :work-full-local:
+Patterns "*" "INBOX"
+Sync Pull New Flags
+Create Near
+Expunge None
+SyncState *

@@ -1,0 +1,106 @@
+{
+  "filesystem_policy": {
+    "include_workdir": false,
+    "read_only": [
+      "/usr",
+      "/lib",
+      "/etc",
+      "/proc",
+      "/dev/urandom",
+      "/opt/hermes",
+      "/var/log",
+      "/work-mail"
+    ],
+    "read_write": [
+      "/sandbox",
+      "/opt/data",
+      "/tmp",
+      "/dev/null",
+      "/dev/pts",
+      "/obsidian"
+    ]
+  },
+  "landlock": {
+    "compatibility": "hard_requirement"
+  },
+  "network_policies": {
+    "allow_ai_todoist_net_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "ai.todoist.net",
+          "port": 443
+        }
+      ],
+      "name": "allow_ai_todoist_net_443"
+    },
+    "allow_auth_atlassian_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "auth.atlassian.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_auth_atlassian_com_443"
+    },
+    "allow_mcp_atlassian_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "mcp.atlassian.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_mcp_atlassian_com_443"
+    },
+    "allow_todoist_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "todoist.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_todoist_com_443"
+    },
+    "hermes-github-api-read": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "access": "read-only",
+          "enforcement": "enforce",
+          "host": "api.github.com",
+          "port": 443,
+          "protocol": "rest"
+        }
+      ],
+      "name": "hermes-github-api-read"
+    }
+  },
+  "process": {
+    "run_as_group": "10000",
+    "run_as_user": "10000"
+  },
+  "version": 1
+}

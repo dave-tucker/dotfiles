@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+set -euo pipefail
+umask 077
+image=localhost/work-mail-xoauth2:0.27
+token_dir="$HOME/.config/sasl-xoauth2"
+
+client_mount=()
+if [[ $# == 1 && "$1" == --authorize-thunderbird ]]; then
+  oauth_client=thunderbird
+elif [[ $# == 2 && "$1" == --authorize ]]; then
+  client_file="$(cd "$(dirname "$2")" && pwd)/$(basename "$2")"
+  test -f "$client_file"
+  client_mount=(-v "$client_file:/oauth-client.json:ro")
+  oauth_client=desktop
+else
+  printf 'Usage: %s --authorize-thunderbird | --authorize /path/to/client.json\n' "$0" >&2
+  exit 2
+fi
+mkdir -p "$token_dir"
+chmod 700 "$token_dir"
+podman run --rm -it -p 127.0.0.1:18793:18793 \
+  -v "$token_dir:/tokens" ${client_mount[@]+"${client_mount[@]}"} "$image" python3 -c '
+import json, os, subprocess, sys, tempfile
+from pathlib import Path
+
+os.umask(0o077)
+if sys.argv[1] == "thunderbird":
+  # Public desktop client values published in Thunderbird OAuth2Providers.sys.mjs.
+  client = {
+      "client_id": "406964657835-aq8lmia8j95dhl1a2bvharmfk3t1hgqj.apps.googleusercontent.com",
+      "client_secret": "kSmqreRr0qwBWJgbf5Y-PjSU",
+  }
+else:
+  client = json.loads(Path("/oauth-client.json").read_text()).get("installed")
+if not client:
+  raise SystemExit("Use the JSON for a Google Desktop app OAuth client.")
+with tempfile.TemporaryDirectory(dir="/tokens", prefix=".authorize-") as temp:
+  token_file = Path(temp) / "token.json"
+  token_file.write_text(json.dumps({key: client[key] for key in ("client_id", "client_secret")}))
+  subprocess.run([
+      "sasl-xoauth2-tool", "get-token", "gmail", str(token_file),
+      "--overwrite-existing-token", "--client-id", client["client_id"],
+      "--client-secret", client["client_secret"], "--scope", "https://mail.google.com/",
+  ], check=True)
+  subprocess.run(["sasl-xoauth2-tool", "test-token-refresh", str(token_file)], check=True)
+  token_file.chmod(0o600)
+  token_file.replace("/tokens/work-gmail.json")
+' "$oauth_client"

@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/opt/podman/bin:$PATH"
+
+{{- if and .is_work (eq .chezmoi.os "darwin") }}
+# Re-run when any work-app build or service input changes.
+# work-mail-container: {{ include "dot_config/work-mail-sync/Containerfile" | sha256sum }}
+# hermes-container: {{ include "dot_config/work-assistant/Containerfile.hermes" | sha256sum }}
+# himalaya-config: {{ include "dot_config/work-assistant/himalaya.toml.tmpl" | sha256sum }}
+# launch-agent: {{ include "Library/LaunchAgents/local.work-mail-sync.plist.tmpl" | sha256sum }}
+
+for command in brew podman openshell; do
+  if ! command -v "$command" >/dev/null 2>&1; then
+    printf 'Missing required command after mise bootstrap: %s\n' "$command" >&2
+    exit 1
+  fi
+done
+
+if ! podman info >/dev/null 2>&1; then
+  if [[ -n $(podman machine list --quiet) ]]; then
+    podman machine start
+  else
+    podman machine init
+    podman machine start
+  fi
+fi
+
+mkdir -p "$HOME/mail/work" "$HOME/Library/Logs"
+
+podman build \
+  -t localhost/work-mail-xoauth2:0.27 \
+  "$HOME/.config/work-mail-sync"
+
+podman build \
+  -t localhost/hermes-openshell:work-assistant \
+  -f "$HOME/.config/work-assistant/Containerfile.hermes" \
+  "$HOME/.config/work-assistant"
+
+brew services restart openshell
+
+uid=$(id -u)
+service="gui/$uid/local.work-mail-sync"
+plist="$HOME/Library/LaunchAgents/local.work-mail-sync.plist"
+launchctl bootout "$service" >/dev/null 2>&1 || true
+
+if [[ -f "$HOME/.config/sasl-xoauth2/work-gmail.json" ]]; then
+  launchctl bootstrap "gui/$uid" "$plist"
+else
+  printf 'Work mail is configured but not authorized. Run:\n' >&2
+  printf '  ~/.config/work-mail-sync/authorize --authorize-thunderbird\n' >&2
+fi
+{{- else }}
+# Work applications are intentionally not provisioned on this machine.
+exit 0
+{{- end }}

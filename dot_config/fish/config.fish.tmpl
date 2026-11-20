@@ -38,5 +38,13 @@ if status is-interactive
     abbr --add picc pi --provider anthropic-vertex --model claude-sonnet-4-6
 
     # Starship prompt
-    ~/.local/share/mise/shims/starship init fish | source
+    # Starship embeds its own executable path in fish_prompt. Rewrite that path
+    # to our stable symlink so existing terminals survive `mise up` upgrades
+    # without paying the mise shim startup cost on every prompt.
+    set -l starship_bin $HOME/.local/bin/starship
+    set -l starship_path_pattern \
+        (string escape --style=regex "$HOME/.local/share/mise/installs/aqua-starship-starship/")"[^/]+/starship"
+    $starship_bin init fish --print-full-init \
+        | string replace --regex --all "$starship_path_pattern" "$starship_bin" \
+        | source
 end

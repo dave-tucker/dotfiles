@@ -1,0 +1,11 @@
+[openshell]
+version = 2
+
+[openshell.gateway]
+
+[openshell.drivers.podman]
+enable_bind_mounts = true
+allow_driver_config = true
+
+[openshell.drivers.podman.resource_admission]
+enabled = false

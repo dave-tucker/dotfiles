@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+mkdir -p "$HOME/mail/work"
+
+exec podman run --rm \
+  -v "$HOME/.config/work-mail-sync/mbsyncrc:/mbsyncrc:ro" \
+  -v "$HOME/.config/sasl-xoauth2:/tokens" \
+  -v "$HOME/mail/work:/mail" \
+  localhost/work-mail-xoauth2:0.27 mbsync -c /mbsyncrc work-full

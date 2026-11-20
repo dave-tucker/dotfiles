@@ -1,0 +1,28 @@
+# Derived from NVIDIA OpenShell's example OpenAI provider profile (Apache-2.0).
+id: hermes-openai
+display_name: Hermes OpenAI
+description: OpenAI model access for the Hermes work PA
+category: inference
+inference_capable: true
+credentials:
+  - name: api_key
+    description: OpenAI API key
+    env_vars: [OPENAI_API_KEY]
+    required: true
+    auth_style: bearer
+    header_name: authorization
+endpoints:
+  - host: api.openai.com
+    port: 443
+    protocol: rest
+    enforcement: enforce
+    rules:
+      - allow: { method: GET, path: /v1/models }
+      - allow: { method: POST, path: /v1/chat/completions }
+      - allow: { method: POST, path: /v1/responses }
+binaries:
+  - /opt/hermes/.venv/bin/python
+  - /opt/hermes/.venv/bin/python*
+  - /opt/hermes/**/python*
+  - /usr/local/bin/python3*
+  - /usr/bin/python3*

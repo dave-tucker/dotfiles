@@ -1,0 +1,8 @@
+# debian:unstable-slim, pinned for reproducible rebuilds.
+FROM docker.io/library/debian@sha256:0616b6687a2b155010c25f9019d2e87461bed2b19b2733ca079b4700a2513949
+RUN printf 'deb http://deb.debian.org/debian experimental main\n' > /etc/apt/sources.list.d/experimental.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates isync python3-msal sasl2-bin sasl-xoauth2=0.27-0.1 sasl-xoauth2-tool=0.27-0.1 \
+    && sed -i "s/0), request_handler_class)/18793), request_handler_class)/" /usr/bin/sasl-xoauth2-tool \
+    && printf '{"client_id":"PLACEHOLDER","client_secret":"PLACEHOLDER"}\n' > /etc/sasl-xoauth2.conf \
+    && rm -r /var/lib/apt/lists

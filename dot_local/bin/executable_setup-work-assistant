@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/opt/podman/bin:$PATH"
+
+config_dir="$HOME/.config/work-assistant"
+sandbox_name=work-assistant
+provider_name=work-pa-openai
+image=localhost/hermes-openshell:work-assistant
+
+for command in openshell podman; do
+  if ! command -v "$command" >/dev/null 2>&1; then
+    printf 'Missing required command: %s\n' "$command" >&2
+    exit 1
+  fi
+done
+
+if ! podman image exists "$image"; then
+  podman build -t "$image" -f "$config_dir/Containerfile.hermes" "$config_dir"
+fi
+
+if ! openshell profile list --type provider | awk 'NR > 1 { print $1 }' | grep -qx hermes-openai; then
+  openshell profile import --file "$config_dir/hermes-openai-provider.yaml"
+fi
+
+if ! openshell provider get "$provider_name" >/dev/null 2>&1; then
+  if [[ -z ${OPENAI_API_KEY:-} ]]; then
+    printf 'Set OPENAI_API_KEY, then run this command again to create the OpenShell provider.\n' >&2
+    exit 1
+  fi
+  openshell provider create \
+    --name "$provider_name" \
+    --type hermes-openai \
+    --credential OPENAI_API_KEY
+fi
+
+if openshell sandbox get "$sandbox_name" >/dev/null 2>&1; then
+  openshell policy set "$sandbox_name" --policy "$config_dir/sandbox-policy.yaml"
+  printf '%s already exists; policy updated.\n' "$sandbox_name"
+  printf 'Recreate it explicitly after changing its image, mounts, or driver configuration.\n'
+  exit 0
+fi
+
+openshell sandbox create \
+  --name "$sandbox_name" \
+  --from "$image" \
+  --driver-config-json "$(tr -d '\n' < "$config_dir/driver.json")" \
+  --provider "$provider_name" \
+  --policy "$config_dir/sandbox-policy.yaml" \
+  --detach \
+  -- hermes gateway run

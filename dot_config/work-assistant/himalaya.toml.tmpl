@@ -1,0 +1,14 @@
+{{- $address := get . "work_mail_address" -}}
+{{- if not $address -}}
+{{-   $matches := regexFindAll `(?m)^User[ \t]+[^\r\n]+` (include (joinPath .chezmoi.homeDir ".config/work-mail-sync/mbsyncrc")) 1 -}}
+{{-   if $matches -}}
+{{-     $address = trimAll "\"" (trim (regexReplaceAll `^User[ \t]+` (first $matches) "")) -}}
+{{-   end -}}
+{{- end -}}
+{{- if not (regexMatch `^[a-zA-Z0-9._+%-]+@[a-zA-Z0-9.-]+$` $address) -}}
+{{- fail "Set work_mail_address in your local chezmoi data." -}}
+{{- end }}
+[accounts.work]
+email = {{ $address | quote }}
+default = true
+maildir.root = "/work-mail"

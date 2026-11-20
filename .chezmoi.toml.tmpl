@@ -1,9 +1,11 @@
-{{- $is_work := false -}}
-{{- if eq .chezmoi.hostname "datucker1-mac" -}}
-{{-   $is_work = true -}}
+{{- $machine_role := promptStringOnce . "machine_role" "Machine role (personal/work)" -}}
+{{- if not (or (eq $machine_role "personal") (eq $machine_role "work")) -}}
+{{-   fail "machine_role must be either personal or work" -}}
 {{- end -}}
+{{- $is_work := eq $machine_role "work" -}}
 
 [git]
+  autoAdd = true
   autoCommit = true
   autoPush = true
 
@@ -17,8 +19,11 @@
     ]
 
 [data]
+    machine_role = {{ $machine_role | quote }}
     is_work = {{ $is_work }}
     {{- if $is_work -}}
+    {{- $work_mail_address := promptStringOnce . "work_mail_address" "Work email address" }}
+    work_mail_address = {{ $work_mail_address | quote }}
     {{- $project_id := promptStringOnce . "vertex_project_id" "Vertex Project ID" }}
     vertex_project_id = {{ $project_id | quote }}
     {{- $region := promptStringOnce . "vertex_region" "Vertex Region" }}

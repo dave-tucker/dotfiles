@@ -1,0 +1,10 @@
+{{- if not (and .is_work (eq .chezmoi.os "darwin")) }}
+.config/openshell/gateway.toml
+.config/work-assistant
+.config/work-assistant/**
+.config/work-mail-sync
+.config/work-mail-sync/**
+.local/bin/sync-work-mail
+.local/bin/setup-work-assistant
+Library/LaunchAgents/local.work-mail-sync.plist
+{{- end }}

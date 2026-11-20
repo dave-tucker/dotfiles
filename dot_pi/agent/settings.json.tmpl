@@ -1,3 +1,19 @@
+{{- if .is_work -}}
+{
+  "lastChangelogVersion": "1.5.2",
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "packages": [
+    "npm:context-mode",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@juicesharp/rpiv-btw",
+    "npm:@twogiants/pi-anthropic-vertex"
+  ],
+  "theme": "dracula",
+  "hideThinkingBlock": true
+}
+{{- else -}}
 {
   "lastChangelogVersion": "0.75.4",
   "defaultProvider": "donatello",
@@ -19,3 +35,4 @@
   ],
   "theme": "dracula"
 }
+{{- end }}

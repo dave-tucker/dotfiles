@@ -1,0 +1,24 @@
+{
+  "podman": {
+    "mounts": [
+      {
+        "type": "volume",
+        "source": "work-assistant-data",
+        "target": "/opt/data",
+        "read_only": false
+      },
+      {
+        "type": "bind",
+        "source": "{{ .chezmoi.homeDir }}/vaults/Work Brain",
+        "target": "/obsidian",
+        "read_only": false
+      },
+      {
+        "type": "bind",
+        "source": "{{ .chezmoi.homeDir }}/mail/work",
+        "target": "/work-mail",
+        "read_only": true
+      }
+    ]
+  }
+}
