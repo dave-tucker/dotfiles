@@ -30,7 +30,7 @@ The first `chezmoi init` asks whether the machine is `personal` or `work`. The a
 - **macOS**: Xcode CLI tools and chezmoi
 - **Fedora**: chezmoi
 
-Chezmoi installs mise. Mise then installs the declared tools and system packages.
+Chezmoi installs mise. Mise then installs the declared tools and system packages. Tool versions are pinned exactly; a weekly GitHub Actions workflow opens reviewed update PRs for newer releases.
 
 ## Bootstrap
 
@@ -72,6 +72,17 @@ chezmoi diff
 # Check package drift
 mise bootstrap packages status
 ```
+
+## Automated updates
+
+GitHub Actions checks weekly for tool releases that are at least seven days old and opens a signed-off pull request with updated exact pins. Action dependencies are pinned to full commit SHAs and updated by Dependabot. CI validates the repository with actionlint, yamllint, jq, yq, Prettier, taplo, shellcheck, and shfmt.
+
+Each machine checks for merged dotfile changes every six hours:
+
+- macOS uses `local.chezmoi-update` in `~/Library/LaunchAgents`.
+- Linux uses the `chezmoi-update.timer` systemd user timer.
+
+The updater refuses to run when the chezmoi source repository is dirty and never forces destination changes. Failures are logged to `~/Library/Logs/chezmoi-update.log` on macOS or the systemd user journal on Linux.
 
 Chezmoi auto-adds, commits, and pushes after chezmoi changes its source state; it is not a watcher for direct edits made inside the source directory.
 

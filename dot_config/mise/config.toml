@@ -1,0 +1,6 @@
+[settings]
+pin = true
+
+[settings.write_targets]
+tools = "~/.config/mise/conf.d/10-tools.toml"
+packages = "~/.config/mise/conf.d/20-packages.toml"

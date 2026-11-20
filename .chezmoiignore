@@ -1,4 +1,5 @@
 {{- if not (and .is_work (eq .chezmoi.os "darwin")) }}
+.config/mise/conf.d/30-work.toml
 .config/openshell/gateway.toml
 .config/work-assistant
 .config/work-assistant/**
@@ -7,4 +8,11 @@
 .local/bin/sync-work-mail
 .local/bin/setup-work-assistant
 Library/LaunchAgents/local.work-mail-sync.plist
+{{- end }}
+{{- if ne .chezmoi.os "darwin" }}
+Library/LaunchAgents/local.chezmoi-update.plist
+{{- end }}
+{{- if ne .chezmoi.os "linux" }}
+.config/systemd/user/chezmoi-update.service
+.config/systemd/user/chezmoi-update.timer
 {{- end }}

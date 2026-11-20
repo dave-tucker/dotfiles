@@ -1,0 +1,9 @@
+[bootstrap.packages]
+"brew:aerc" = { os = "macos" }
+"brew:nvidia/openshell/openshell" = { os = "macos" }
+"brew-cask:gcloud-cli" = { os = "macos" }
+"brew-cask:obsidian" = { os = "macos" }
+"brew-cask:podman-desktop" = { os = "macos" }
+
+[tools]
+herdr = "0.9.5"

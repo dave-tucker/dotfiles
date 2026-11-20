@@ -1,0 +1,12 @@
+[Unit]
+Description=Periodically update chezmoi-managed dotfiles
+
+[Timer]
+OnBootSec=10m
+OnUnitActiveSec=6h
+RandomizedDelaySec=15m
+Persistent=true
+Unit=chezmoi-update.service
+
+[Install]
+WantedBy=timers.target

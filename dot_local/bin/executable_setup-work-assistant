@@ -44,7 +44,7 @@ fi
 openshell sandbox create \
   --name "$sandbox_name" \
   --from "$image" \
-  --driver-config-json "$(tr -d '\n' < "$config_dir/driver.json")" \
+  --driver-config-json "$(tr -d '\n' <"$config_dir/driver.json")" \
   --provider "$provider_name" \
   --policy "$config_dir/sandbox-policy.yaml" \
   --detach \

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Re-run when the updater or scheduler definitions change.
+# updater-sha256: {{ include "dot_local/bin/executable_update-dotfiles" | sha256sum }}
+# launch-agent-sha256: {{ include "Library/LaunchAgents/local.chezmoi-update.plist.tmpl" | sha256sum }}
+# systemd-service-sha256: {{ include "dot_config/systemd/user/chezmoi-update.service" | sha256sum }}
+# systemd-timer-sha256: {{ include "dot_config/systemd/user/chezmoi-update.timer" | sha256sum }}
+
+{{- if eq .chezmoi.os "darwin" }}
+mkdir -p "$HOME/Library/Logs"
+uid=$(id -u)
+service="gui/$uid/local.chezmoi-update"
+plist="$HOME/Library/LaunchAgents/local.chezmoi-update.plist"
+launchctl bootout "$service" >/dev/null 2>&1 || true
+launchctl bootstrap "gui/$uid" "$plist"
+{{- else if eq .chezmoi.os "linux" }}
+systemctl --user daemon-reload
+systemctl --user enable --now chezmoi-update.timer
+{{- else }}
+exit 0
+{{- end }}

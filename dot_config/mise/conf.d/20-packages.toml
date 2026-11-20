@@ -1,0 +1,21 @@
+[bootstrap.packages]
+"brew:fd" = { os = "macos" }
+"brew:fish" = { os = "macos" }
+"brew:fzf" = { os = "macos" }
+"brew:git-lfs" = { os = "macos" }
+"brew:neovim" = { os = "macos" }
+"brew:ripgrep" = { os = "macos" }
+"brew:tmux" = { os = "macos" }
+"brew:zoxide" = { os = "macos" }
+"brew-cask:ghostty" = { os = "macos" }
+
+"dnf:fd-find" = { os = "linux" }
+"dnf:fish" = { os = "linux" }
+"dnf:fzf" = { os = "linux" }
+"dnf:git" = { os = "linux" }
+"dnf:git-lfs" = { os = "linux" }
+"dnf:ghostty" = { os = "linux" }
+"dnf:neovim" = { os = "linux" }
+"dnf:ripgrep" = { os = "linux" }
+"dnf:tmux" = { os = "linux" }
+"dnf:zoxide" = { os = "linux" }

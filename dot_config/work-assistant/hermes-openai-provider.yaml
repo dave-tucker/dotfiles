@@ -17,9 +17,9 @@ endpoints:
     protocol: rest
     enforcement: enforce
     rules:
-      - allow: { method: GET, path: /v1/models }
-      - allow: { method: POST, path: /v1/chat/completions }
-      - allow: { method: POST, path: /v1/responses }
+      - allow: {method: GET, path: /v1/models}
+      - allow: {method: POST, path: /v1/chat/completions}
+      - allow: {method: POST, path: /v1/responses}
 binaries:
   - /opt/hermes/.venv/bin/python
   - /opt/hermes/.venv/bin/python*

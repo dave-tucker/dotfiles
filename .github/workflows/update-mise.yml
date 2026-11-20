@@ -1,0 +1,55 @@
+name: Update mise pins
+
+on: # yamllint disable-line rule:truthy
+  schedule:
+    - cron: "17 7 * * 1" # yamllint disable-line rule:quoted-strings
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-mise-pins
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      MISE_CONFIG_DIR: ${{ github.workspace }}/dot_config/mise
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # @v5
+
+      - name: Install mise
+        uses: jdx/mise-action@5228313ee0372e111a38da051671ca30fc5a96db # @v3
+        with:
+          version: 2026.11.5
+          install: false
+          cache: true
+
+      - name: Update exact tool pins
+        run: |
+          mise install --yes
+          mise upgrade --global --bump --pin --yes --no-prune --minimum-release-age 7d
+
+      - name: Validate updated mise configuration
+        run: |
+          mise config
+          mise install --yes
+
+      - name: Open update pull request
+        uses: peter-evans/create-pull-request@22a9089034f40e5a961c8808d113e2c98fb63676 # @v7
+        with:
+          branch: automation/mise-updates
+          delete-branch: true
+          commit-message: Update pinned mise tools
+          signoff: true
+          title: Update pinned mise tools
+          body: |
+            Automated weekly update of exact tool versions managed by mise.
+
+            Releases must be at least seven days old. Please review and merge manually; machines will install the merged pins during their next scheduled chezmoi update.

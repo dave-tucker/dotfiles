@@ -1,0 +1,19 @@
+# Dependabot recognizes GitHub Actions pinned to full commit SHAs and updates
+# both the SHA and the adjacent version comment when a new release is available.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: 06:17
+      timezone: Etc/UTC
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: ci
+    groups:
+      production-dependencies:
+        dependency-type: production
+      development-dependencies:
+        dependency-type: development

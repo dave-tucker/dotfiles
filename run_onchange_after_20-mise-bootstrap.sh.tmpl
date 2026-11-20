@@ -3,9 +3,12 @@ set -euo pipefail
 
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
-# Re-run when the managed mise manifest or machine role changes.
+# Re-run when any managed mise configuration file or machine role changes.
 # machine-role: {{ .machine_role }}
-# manifest-sha256: {{ include "dot_config/mise/config.toml.tmpl" | sha256sum }}
+# config-sha256: {{ include "dot_config/mise/config.toml" | sha256sum }}
+# tools-sha256: {{ include "dot_config/mise/conf.d/10-tools.toml" | sha256sum }}
+# packages-sha256: {{ include "dot_config/mise/conf.d/20-packages.toml" | sha256sum }}
+# work-sha256: {{ include "dot_config/mise/conf.d/30-work.toml" | sha256sum }}
 
 mise bootstrap packages apply --yes
 mise install
