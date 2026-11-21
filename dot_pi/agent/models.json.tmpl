@@ -1,6 +1,111 @@
+{{- if .is_work -}}
 {
   "providers": {
-    {{- if not (index . "is_work") }}
+    "openai": {
+      "baseUrl": "https://api.enmaas.devshift.net/v1"
+    },
+    "anthropic": {
+      "baseUrl": "https://api.enmaas.devshift.net",
+      "compat": {
+        "supportsMidConvoEffort": false
+      },
+      "modelOverrides": {
+        "claude-opus-5-5": {
+          "compat": {
+            "supportsStrictTools": false
+          }
+        },
+        "claude-haiku-5-5": {
+          "compat": {
+            "supportsStrictTools": false
+          }
+        }
+      }
+    },
+    "enmaas-glm-5-3": {
+      "baseUrl": "https://api.enmaas.devshift.net/v1",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "rits/zai-org/glm-5-3",
+          "name": "GLM 5.3 (EnMaaS)",
+          "reasoning": true,
+          "input": ["text"],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false
+          },
+          "samplingParams": {
+            "frequency_penalty": 0,
+            "presence_penalty": 0
+          }
+        }
+      ]
+    },
+    "enmaas-deepseek-v4-1-flash": {
+      "baseUrl": "https://api.enmaas.devshift.net/v1",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "rits/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+          "name": "DeepSeek V4.1 Flash 1017 (EnMaaS)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 1048576,
+          "maxTokens": 262144,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false
+          },
+          "samplingParams": {
+            "temperature": 1.0,
+            "top_p": 1.0,
+            "frequency_penalty": 0,
+            "presence_penalty": 0
+          }
+        }
+      ]
+    },
+    "enmaas-muse-spark": {
+      "baseUrl": "https://api.enmaas.devshift.net/v1",
+      "api": "openai-completions",
+      "models": [
+        {
+          "id": "rits/meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+          "name": "Muse Spark Open (EnMaaS)",
+          "reasoning": true,
+          "input": ["text", "image"],
+          "contextWindow": 1048576,
+          "maxTokens": 131072,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "supportsDeveloperRole": false
+          }
+        }
+      ]
+    }
+  }
+}
+{{- else -}}
+{
+  "providers": {
     "donatello": {
       "baseUrl": {{ keyring "donatello" "url" | quote }},
       "api": "openai-responses",
@@ -23,6 +128,6 @@
         }
       ]
     }
-    {{- end}}
   }
 }
+{{- end }}

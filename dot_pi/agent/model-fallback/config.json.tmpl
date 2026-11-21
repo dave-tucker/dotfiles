@@ -1,0 +1,44 @@
+{{- if .is_work -}}
+{
+  "version": 1,
+  "enabled": true,
+  "autoRetry": true,
+  "rules": [
+    {
+      "name": "openai-to-glm",
+      "matchProviders": ["openai"],
+      "statuses": [429, 500, 502, 503, 504, 529],
+      "fallback": {
+        "provider": "enmaas-glm-5-3",
+        "model": "rits/zai-org/glm-5-3"
+      }
+    },
+    {
+      "name": "anthropic-to-glm",
+      "matchProviders": ["anthropic"],
+      "statuses": [429, 500, 502, 503, 504, 529],
+      "fallback": {
+        "provider": "enmaas-glm-5-3",
+        "model": "rits/zai-org/glm-5-3"
+      }
+    }
+  ]
+}
+{{- else -}}
+{
+  "version": 1,
+  "enabled": true,
+  "autoRetry": true,
+  "rules": [
+    {
+      "name": "codex-to-local",
+      "matchProviders": ["openai-codex"],
+      "statuses": [429, 500, 502, 503, 504],
+      "fallback": {
+        "provider": "donatello",
+        "model": "qwen3.8-next-gufo"
+      }
+    }
+  ]
+}
+{{- end }}

@@ -1,54 +1,37 @@
 # dotfiles
 
-Managed with [chezmoi](https://chezmoi.io).
+Personal and work-machine configuration for macOS and Fedora, managed with [chezmoi](https://chezmoi.io) and [mise](https://mise.jdx.dev).
 
-## What's managed
-
-| Tool | Config |
-|---|---|
-| [fish](https://fishshell.com) | `~/.config/fish/` |
-| [starship](https://starship.rs) | `~/.config/starship/starship.toml` |
-| [ghostty](https://ghostty.org) | `~/.config/ghostty/config` |
-| [neovim](https://neovim.io) | `~/.config/nvim/` |
-| [tmux](https://github.com/tmux/tmux) + [TPM](https://github.com/tmux-plugins/tpm) | `~/.tmux.conf` |
-| [git](https://git-scm.com) | `~/.gitconfig` |
-| [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts) | installed everywhere |
-| [Rust](https://www.rust-lang.org) + [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter) | via mise |
-| [Go](https://go.dev) | via mise |
-| [uv](https://github.com/astral-sh/uv) | via mise |
-| [Node.js](https://nodejs.org) | via mise (lts) |
-| [pi-coding-agent](https://github.com/mariozechner/pi-coding-agent) | via mise npm tool, with work/personal provider defaults |
-| Agent skills | global sources declared in `~/.config/agent-skills/sources.txt` |
-| System packages and macOS apps | via mise bootstrap packages |
-| Work assistant and mail sync | work machines only, via OpenShell and Podman |
-
-## Machine roles
-
-The first `chezmoi init` asks whether the machine is `personal` or `work`. The answer is stored only in the machine's local chezmoi config. Shared tools live in the common mise fragments; role-specific packages live in `30-work.toml` and `40-personal.toml`. Work-only configuration, images, services, and LaunchAgents are not applied to personal machines.
+The repository manages shell, editor, terminal, Git, development tools, system packages, macOS applications, Pi, agent skills, scheduled updates, and work-only services.
 
 ## Prerequisites
 
-- **macOS**: Xcode CLI tools and chezmoi
-- **Fedora**: chezmoi
+- **macOS:** Xcode Command Line Tools and chezmoi
+- **Fedora:** chezmoi
 
-Chezmoi installs mise. Mise then installs the declared tools and system packages. Tool versions are pinned exactly; a weekly GitHub Actions workflow opens reviewed update PRs for newer releases.
-
-## Bootstrap
+## Install
 
 ```sh
 chezmoi init --apply dave-tucker/dotfiles
 ```
 
+The first initialization asks for a machine role:
+
+- `personal`
+- `work`
+
+Shared mise configuration is stored under `~/.config/mise/conf.d`. Work and personal packages are selected from `30-work.toml` and `40-personal.toml` respectively.
+
 ## Work-machine setup
 
-After the first apply, authorize mail sync:
+### Mail sync
 
 ```sh
 ~/.config/work-mail-sync/authorize --authorize-thunderbird
 chezmoi apply
 ```
 
-Create the OpenShell work assistant without putting the API key in chezmoi:
+### Work assistant
 
 ```sh
 export OPENAI_API_KEY=...
@@ -56,55 +39,55 @@ setup-work-assistant
 unset OPENAI_API_KEY
 ```
 
-Running `setup-work-assistant` again updates the sandbox policy. Image, mount, or driver changes require explicitly recreating the sandbox so chezmoi never destroys a working sandbox automatically.
+Run `setup-work-assistant` again after changing its image, driver, mounts, or sandbox configuration.
 
-## Daily use
+## Common commands
 
 ```sh
-# Pull latest and apply
+# Pull repository changes and apply them
 chezmoi update
+
+# Apply local source changes
+chezmoi apply
+
+# Preview destination changes
+chezmoi diff
 
 # Edit a managed file
 chezmoi edit ~/.config/fish/config.fish
 
-# See what would change
-chezmoi diff
-
-# Check package drift
+# Check managed package state
 mise bootstrap packages status
 
-# Install the source repository's commit hook (once per clone)
-just hooks
-
-# Run static repository checks
-just lint
-
-# Update global agent skills immediately
+# Update globally installed agent skills
 just update-skills
 ```
 
-## Pi configuration
+## Repository development
 
-Personal Pi settings include Codex/local Qwen models, provider fallback rules, and Herdr task routing. Donatello's URL and token stay in the keyring; credentials, sessions, and runtime state are not tracked.
+```sh
+# Install the repository's pre-commit hook
+just hooks
 
-Both work and personal profiles load `pi-herdr-agents@3.12.1` with the native Core backend. Start Pi inside Herdr Core or Desktop; restart Pi after changing the package or backend. Personal task routing retains the Codex/local Qwen preferences; work delegates use the parent's scoped model unless explicitly overridden. No prototype checkout is required. Herdr manages its generated `herdr-agent-state.ts` extension separately.
+# Run all static checks
+just lint
+```
 
-Use the global `readonly` role for inspection tasks: it allows only `read, grep, find, ls` and disables delegation. Bare subagent launches are not read-only. Keep writers in explicit independent checkouts and coordinate them manually; the upstream host does not provide the prototype's checkout-conflict policy or separate retained/active limits. Treat provider fallback as candidate switching, not guaranteed same-session continuation. The personal `pi-model-fallback` package remains separate from child task routing.
+The lint task checks JSON, YAML, TOML, shell scripts, GitHub Actions workflows, pinned action references, formatting, and systemd user units.
 
-## Automated updates
-
-GitHub Actions checks weekly for tool releases that are at least seven days old and opens a signed-off pull request with updated exact pins. Action dependencies are pinned to full commit SHAs and updated by Dependabot. A pre-commit hook runs the same `just lint` command as CI, validating the repository with actionlint, yamllint, jq, yq, Prettier, taplo, shellcheck, and shfmt.
+## Automatic updates
 
 Each machine checks for merged dotfile changes every six hours:
 
 - macOS uses `local.chezmoi-update` in `~/Library/LaunchAgents`.
-- Linux uses the `chezmoi-update.timer` systemd user timer.
+- Linux uses `chezmoi-update.timer` as a systemd user timer.
 
-The same updater refreshes globally installed agent skills at most once every seven days. New machines install all skills from the declared Product Manager, Matt Pocock, and Vercel skill sources.
+The updater skips dirty source repositories and logs failures to:
 
-The updater refuses to run when the chezmoi source repository is dirty and never forces destination changes. Failures are logged to `~/Library/Logs/chezmoi-update.log` on macOS or the systemd user journal on Linux.
+- macOS: `~/Library/Logs/chezmoi-update.log`
+- Linux: the systemd user journal
 
-Chezmoi auto-adds, commits, and pushes after chezmoi changes its source state; it is not a watcher for direct edits made inside the source directory.
+Global agent skills are refreshed at most once every seven days. GitHub Actions opens reviewed pull requests for pinned mise tool updates, and Dependabot updates pinned GitHub Actions revisions.
 
 ## License
 

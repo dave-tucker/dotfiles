@@ -1,11 +1,54 @@
 {
   "herdr": {
-    "backend": "core"
+    "backend": "auto"
   },
   "status": {
     "enabled": true
   },
-  {{ if not .is_work -}}
+  {{ if .is_work -}}
+  "models": {
+    "default": "openai/gpt-6.2-sol",
+    "agents": {},
+    "tasks": {
+      "coding": [
+        "openai/gpt-6.2-astra",
+        "enmaas-glm-5-3/rits/zai-org/glm-5-3"
+      ],
+      "review": [
+        "anthropic/claude-sonnet-5-5",
+        "enmaas-glm-5-3/rits/zai-org/glm-5-3"
+      ],
+      "recon": [
+        "openai/gpt-6.1-terra",
+        "enmaas-glm-5-3/rits/zai-org/glm-5-3"
+      ],
+      "qa": [
+        "openai/gpt-6.1-terra",
+        "enmaas-glm-5-3/rits/zai-org/glm-5-3"
+      ],
+      "architecture": [
+        "openai/gpt-6.2-astra",
+        "enmaas-glm-5-3/rits/zai-org/glm-5-3"
+      ],
+      "docs": [
+        "openai/gpt-6.2-sol",
+        "enmaas-glm-5-3/rits/zai-org/glm-5-3"
+      ]
+    },
+    "tasksThinking": {
+      "coding": "high",
+      "review": "high",
+      "recon": "low",
+      "qa": "medium",
+      "architecture": "xhigh",
+      "docs": "medium"
+    },
+    "tasksMeta": {
+      "generatedAt": "2026-11-21T02:35:07Z",
+      "method": "registry-only"
+    }
+  },
+  {{ else -}}
   "models": {
     "agents": {},
     "tasks": {

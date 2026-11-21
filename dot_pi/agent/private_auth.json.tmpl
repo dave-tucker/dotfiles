@@ -1,0 +1,27 @@
+{{- if .is_work -}}
+{{- $enmaasKey := keyring "enmaas" "token" -}}
+{
+  "openai": {
+    "type": "api_key",
+    "key": {{ $enmaasKey | quote }}
+  },
+  "anthropic": {
+    "type": "api_key",
+    "key": {{ $enmaasKey | quote }}
+  },
+  "enmaas-glm-5-3": {
+    "type": "api_key",
+    "key": {{ $enmaasKey | quote }}
+  },
+  "enmaas-deepseek-v4-1-flash": {
+    "type": "api_key",
+    "key": {{ $enmaasKey | quote }}
+  },
+  "enmaas-muse-spark": {
+    "type": "api_key",
+    "key": {{ $enmaasKey | quote }}
+  }
+}
+{{- else -}}
+{}
+{{- end }}

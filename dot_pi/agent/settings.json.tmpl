@@ -1,33 +1,34 @@
 {{- if .is_work -}}
 {
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "defaultProvider": "openai",
   "defaultModel": "gpt-6.2-sol",
   "defaultThinkingLevel": "medium",
   "enabledModels": [
-    "openai/gpt-6.2-sol",
     "openai/gpt-6.2-astra",
+    "openai/gpt-6.2-sol",
     "openai/gpt-6.1-terra",
-    "anthropic-vertex/claude-haiku-5-5",
-    "anthropic-vertex/claude-sonnet-5-5",
-    "anthropic-vertex/claude-opus-5-5",
-    "anthropic-vertex/claude-fable-5-2",
-    "google-vertex/gemini-3.1-pro-preview"
+    "anthropic/claude-opus-5-5",
+    "anthropic/claude-sonnet-5-5",
+    "anthropic/claude-haiku-5-5"
   ],
   "packages": [
     "npm:context-mode",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-btw",
-    "npm:@twogiants/pi-anthropic-vertex",
     "npm:pi-model-fallback",
     "npm:pi-herdr-agents@3.12.1"
   ],
   "theme": "dracula",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-model-fallback\",\"scope\":\"user\"}": "0.6.2",
+    "{\"source\":\"npm:pi-herdr-agents@3.12.1\",\"scope\":\"user\"}": "3.12.1"
+  }
 }
 {{- else -}}
 {
-  "lastChangelogVersion": "1.5.2",
+  "lastChangelogVersion": "1.6.0",
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "medium",
@@ -35,7 +36,6 @@
     "npm:context-mode@1.0.169",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-btw",
-    "npm:@twogiants/pi-anthropic-vertex",
     "npm:pi-model-fallback",
     "npm:pi-herdr-agents@3.12.1"
   ],
@@ -46,6 +46,10 @@
     "donatello/qwen3.8-next-gufo",
     "openai-codex/gpt-6-luna"
   ],
-  "theme": "dracula"
+  "theme": "dracula",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-model-fallback\",\"scope\":\"user\"}": "0.6.2",
+    "{\"source\":\"npm:pi-herdr-agents@3.12.1\",\"scope\":\"user\"}": "3.12.1"
+  }
 }
 {{- end }}
