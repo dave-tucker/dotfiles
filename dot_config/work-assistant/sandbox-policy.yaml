@@ -96,6 +96,62 @@
         }
       ],
       "name": "hermes-github-api-read"
+    },
+    "allow_accounts_google_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "accounts.google.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_accounts_google_com_443"
+    },
+    "allow_calendarmcp_googleapis_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "calendarmcp.googleapis.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_calendarmcp_googleapis_com_443"
+    },
+    "allow_drivemcp_googleapis_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "drivemcp.googleapis.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_drivemcp_googleapis_com_443"
+    },
+    "allow_oauth2_googleapis_com_443": {
+      "binaries": [
+        {
+          "path": "/opt/hermes/tools/python-3.14.9+20261021-linux-arm64/bin/python3.14"
+        }
+      ],
+      "endpoints": [
+        {
+          "host": "oauth2.googleapis.com",
+          "port": 443
+        }
+      ],
+      "name": "allow_oauth2_googleapis_com_443"
     }
   },
   "process": {

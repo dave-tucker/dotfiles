@@ -1,6 +1,9 @@
 # nousresearch/hermes-agent:latest, pinned so policy paths remain stable.
 FROM docker.io/nousresearch/hermes-agent@sha256:3e9fe4c6ef36490f43aa0d0d80f9df64e9c92a576eee3042f1a97c8813c05355
 USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends gh \
+    && rm -rf /var/lib/apt/lists/*
 RUN install -d -o 10000 -g 10000 -m 0750 /sandbox /opt/data
 ADD --checksum=sha256:1dc21c3dd6d948929e22e5cae49b9d0b3b30ff88fafd4493fd4460c6252e9d90 https://github.com/pimalaya/himalaya/releases/download/v2.2.1/himalaya.aarch64-linux.tgz /tmp/himalaya.tgz
 RUN tar -xzf /tmp/himalaya.tgz -C /usr/local/bin himalaya && rm /tmp/himalaya.tgz
