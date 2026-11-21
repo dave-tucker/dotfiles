@@ -18,6 +18,7 @@ Managed with [chezmoi](https://chezmoi.io).
 | [uv](https://github.com/astral-sh/uv) | via mise |
 | [Node.js](https://nodejs.org) | via mise (lts) |
 | [pi-coding-agent](https://github.com/mariozechner/pi-coding-agent) | via mise npm tool, with work/personal provider defaults |
+| Agent skills | global sources declared in `~/.config/agent-skills/sources.txt` |
 | System packages and macOS apps | via mise bootstrap packages |
 | Work assistant and mail sync | work machines only, via OpenShell and Podman |
 
@@ -77,6 +78,9 @@ just hooks
 
 # Run static repository checks
 just lint
+
+# Update global agent skills immediately
+just update-skills
 ```
 
 ## Automated updates
@@ -87,6 +91,8 @@ Each machine checks for merged dotfile changes every six hours:
 
 - macOS uses `local.chezmoi-update` in `~/Library/LaunchAgents`.
 - Linux uses the `chezmoi-update.timer` systemd user timer.
+
+The same updater refreshes globally installed agent skills at most once every seven days. New machines install all skills from the declared Product Manager, Matt Pocock, and Vercel skill sources.
 
 The updater refuses to run when the chezmoi source repository is dirty and never forces destination changes. Failures are logged to `~/Library/Logs/chezmoi-update.log` on macOS or the systemd user journal on Linux.
 

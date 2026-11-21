@@ -1,0 +1,3 @@
+deanpeters/Product-Manager-Skills
+mattpocock/skills
+vercel-labs/skills

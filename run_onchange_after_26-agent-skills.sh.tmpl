@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+# Re-run when the declared global skill sources change.
+# sources-sha256: {{ include "dot_config/agent-skills/sources.txt" | sha256sum }}
+
+manifest="$HOME/.config/agent-skills/sources.txt"
+while IFS= read -r source; do
+  [[ -n $source && $source != \#* ]] || continue
+  skills add "$source" --global --all --force
+done <"$manifest"

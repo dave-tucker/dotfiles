@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+export PATH="$HOME/.local/share/mise/shims:$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
 cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}"
 lock_dir="$cache_dir/chezmoi-update.lock"
@@ -41,3 +41,11 @@ if [ -n "$(git -C "$source_dir" status --porcelain --untracked-files=normal)" ];
 fi
 
 chezmoi update --no-tty
+
+skills_stamp="$cache_dir/skills-update.stamp"
+if command -v skills >/dev/null 2>&1 && {
+  [ ! -f "$skills_stamp" ] || find "$skills_stamp" -mtime +6 -print -quit | grep -q .
+}; then
+  skills update --global --yes
+  touch "$skills_stamp"
+fi
