@@ -32,7 +32,9 @@ jobs:
             [tools]
             actionlint = "1.7.12"
             jq = "1.8.2"
+            just = "1.51.0"
             "npm:prettier" = "3.10.1"
+            "pipx:pre-commit" = "4.7.0"
             shellcheck = "0.11.0"
             shfmt = "3.14.1"
             taplo = "0.10.0"
@@ -40,4 +42,4 @@ jobs:
             yq = "4.54.3"
 
       - name: Lint managed files
-        run: bash scripts/lint.sh
+        run: just lint

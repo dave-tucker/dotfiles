@@ -7,6 +7,9 @@ cd "$repo_root"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
 
+just --fmt --check
+pre-commit validate-config .pre-commit-config.yaml
+
 python3 <<'PY'
 import json
 import pathlib

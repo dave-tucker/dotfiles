@@ -71,11 +71,17 @@ chezmoi diff
 
 # Check package drift
 mise bootstrap packages status
+
+# Install the source repository's commit hook (once per clone)
+just hooks
+
+# Run static repository checks
+just lint
 ```
 
 ## Automated updates
 
-GitHub Actions checks weekly for tool releases that are at least seven days old and opens a signed-off pull request with updated exact pins. Action dependencies are pinned to full commit SHAs and updated by Dependabot. CI validates the repository with actionlint, yamllint, jq, yq, Prettier, taplo, shellcheck, and shfmt.
+GitHub Actions checks weekly for tool releases that are at least seven days old and opens a signed-off pull request with updated exact pins. Action dependencies are pinned to full commit SHAs and updated by Dependabot. A pre-commit hook runs the same `just lint` command as CI, validating the repository with actionlint, yamllint, jq, yq, Prettier, taplo, shellcheck, and shfmt.
 
 Each machine checks for merged dotfile changes every six hours:
 
