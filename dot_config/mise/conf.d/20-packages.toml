@@ -28,6 +28,7 @@
 "brew-cask:fantastical" = { os = "macos" }
 "brew-cask:ghostty" = { os = "macos" }
 "brew-cask:google-gemini" = { os = "macos" }
+"brew-cask:herdr-app" = { os = "macos" }
 "brew-cask:gpg-suite" = { os = "macos" }
 "brew-cask:lm-studio" = { os = "macos" }
 "brew-cask:rode-central" = { os = "macos" }
