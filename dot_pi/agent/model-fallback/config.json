@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "enabled": true,
+  "autoRetry": true,
+  "rules": [
+    {
+      "name": "codex-to-local",
+      "matchProviders": ["openai-codex"],
+      "statuses": [429, 500, 502, 503, 504],
+      "fallback": {
+        "provider": "donatello",
+        "model": "qwen3.8-next-gufo"
+      }
+    }
+  ]
+}

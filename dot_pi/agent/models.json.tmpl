@@ -5,11 +5,22 @@
       "baseUrl": {{ keyring "donatello" "url" | quote }},
       "api": "openai-responses",
       "apiKey": {{ keyring "donatello" "token" | quote }},
-      "contextWindow": 131072,
-      "maxTokens": 32768,
       "models": [
-        { "id": "qwen3.6" },
-        { "id": "qwen3.6-coding" },
+        {
+          "id": "qwen3.8-next-gufo",
+          "reasoning": true,
+          "contextWindow": 262144,
+          "maxTokens": 32768,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": "low",
+            "low": "low",
+            "medium": "medium",
+            "high": "xhigh",
+            "xhigh": "xhigh",
+            "max": "xhigh"
+          }
+        }
       ]
     }
     {{- end}}

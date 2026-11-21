@@ -18,30 +18,33 @@
     "npm:context-mode",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-btw",
-    "npm:@twogiants/pi-anthropic-vertex"
+    "npm:@twogiants/pi-anthropic-vertex",
+    "npm:pi-model-fallback",
+    "npm:pi-herdr-agents@3.12.1"
   ],
   "theme": "dracula",
   "hideThinkingBlock": true
 }
 {{- else -}}
 {
-  "lastChangelogVersion": "0.75.4",
-  "defaultProvider": "donatello",
-  "defaultModel": "qwen3.6-coding",
+  "lastChangelogVersion": "1.5.2",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "medium",
   "packages": [
-    "npm:context-mode",
+    "npm:context-mode@1.0.169",
     "npm:@juicesharp/rpiv-ask-user-question",
     "npm:@juicesharp/rpiv-btw",
-    "npm:@twogiants/pi-anthropic-vertex"
+    "npm:@twogiants/pi-anthropic-vertex",
+    "npm:pi-model-fallback",
+    "npm:pi-herdr-agents@3.12.1"
   ],
   "transport": "auto",
   "enabledModels": [
-    "openrouter/deepseek/deepseek-v4-flash",
-    "openrouter/deepseek/deepseek-v4-pro",
-    "openai-codex/gpt-5.4-mini",
-    "openai-codex/gpt-5.4",
-    "donatello/qwen3.6-coding"
+    "openai-codex/gpt-6.1-sol",
+    "openai-codex/gpt-6.1-terra",
+    "donatello/qwen3.8-next-gufo",
+    "openai-codex/gpt-6-luna"
   ],
   "theme": "dracula"
 }

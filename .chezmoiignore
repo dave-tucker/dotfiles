@@ -2,6 +2,8 @@
 .config/mise/conf.d/30-work.toml
 {{- end }}
 {{- if .is_work }}
+.pi/agent/model-fallback
+.pi/agent/model-fallback/**
 .config/mise/conf.d/40-personal.toml
 {{- end }}
 {{- if not (and .is_work (eq .chezmoi.os "darwin")) }}

@@ -83,6 +83,14 @@ just lint
 just update-skills
 ```
 
+## Pi configuration
+
+Personal Pi settings include Codex/local Qwen models, provider fallback rules, and Herdr task routing. Donatello's URL and token stay in the keyring; credentials, sessions, and runtime state are not tracked.
+
+Both work and personal profiles load `pi-herdr-agents@3.12.1` with the native Core backend. Start Pi inside Herdr Core or Desktop; restart Pi after changing the package or backend. Personal task routing retains the Codex/local Qwen preferences; work delegates use the parent's scoped model unless explicitly overridden. No prototype checkout is required. Herdr manages its generated `herdr-agent-state.ts` extension separately.
+
+Use the global `readonly` role for inspection tasks: it allows only `read, grep, find, ls` and disables delegation. Bare subagent launches are not read-only. Keep writers in explicit independent checkouts and coordinate them manually; the upstream host does not provide the prototype's checkout-conflict policy or separate retained/active limits. Treat provider fallback as candidate switching, not guaranteed same-session continuation. The personal `pi-model-fallback` package remains separate from child task routing.
+
 ## Automated updates
 
 GitHub Actions checks weekly for tool releases that are at least seven days old and opens a signed-off pull request with updated exact pins. Action dependencies are pinned to full commit SHAs and updated by Dependabot. A pre-commit hook runs the same `just lint` command as CI, validating the repository with actionlint, yamllint, jq, yq, Prettier, taplo, shellcheck, and shfmt.

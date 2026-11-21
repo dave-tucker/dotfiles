@@ -1,0 +1,55 @@
+{
+  "herdr": {
+    "backend": "core"
+  },
+  "status": {
+    "enabled": true
+  },
+  {{ if not .is_work -}}
+  "models": {
+    "agents": {},
+    "tasks": {
+      "coding": [
+        "openai-codex/gpt-6.1-terra",
+        "openai-codex/gpt-6.1-sol",
+        "donatello/qwen3.8-next-gufo"
+      ],
+      "review": [
+        "openai-codex/gpt-6.1-sol",
+        "openai-codex/gpt-6.1-terra",
+        "donatello/qwen3.8-next-gufo"
+      ],
+      "recon": ["donatello/qwen3.8-next-gufo", "openai-codex/gpt-6-luna"],
+      "qa": ["openai-codex/gpt-6-luna", "donatello/qwen3.8-next-gufo"],
+      "architecture": [
+        "openai-codex/gpt-6.1-sol",
+        "openai-codex/gpt-6.1-terra",
+        "donatello/qwen3.8-next-gufo"
+      ],
+      "docs": ["donatello/qwen3.8-next-gufo", "openai-codex/gpt-6.1-sol"]
+    },
+    "tasksMeta": {
+      "generatedAt": "2026-10-30T18:02:06Z",
+      "method": "research"
+    }
+  },
+  {{ end -}}
+  "persistent": {
+    "maxAgents": 3
+  },
+  "spawning": {
+    "maxDepth": 3
+  },
+  "supervision": {
+    "forcePolling": false,
+    "hangWarningMinutes": 15
+  },
+  "panes": {
+    "mode": "grouped",
+    "direction": "right",
+    "maxPerTab": 4
+  },
+  "guidelines": {
+    "launchRoster": true
+  }
+}
