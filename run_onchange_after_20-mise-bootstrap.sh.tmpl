@@ -9,6 +9,7 @@ export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 # tools-sha256: {{ include "dot_config/mise/conf.d/10-tools.toml" | sha256sum }}
 # packages-sha256: {{ include "dot_config/mise/conf.d/20-packages.toml" | sha256sum }}
 # work-sha256: {{ include "dot_config/mise/conf.d/30-work.toml" | sha256sum }}
+# personal-sha256: {{ include "dot_config/mise/conf.d/40-personal.toml" | sha256sum }}
 
 mise bootstrap packages apply --yes
 mise install

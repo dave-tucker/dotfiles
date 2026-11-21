@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+{{- if eq .chezmoi.os "darwin" }}
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+# Albert is distributed from a third-party tap whose cask currently requires
+# Ruby evaluation that mise's brew-cask backend cannot perform during status.
+brew tap albertlauncher/albert
+brew trust albertlauncher/albert
+
+if ! brew list --cask albert >/dev/null 2>&1; then
+  brew install --cask albertlauncher/albert/albert
+fi
+{{- else }}
+exit 0
+{{- end }}

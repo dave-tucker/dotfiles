@@ -1,0 +1,8 @@
+[bootstrap.packages]
+"brew-cask:openscad" = { os = "macos" }
+"brew-cask:tailscale-app" = { os = "macos" }
+"mas:1606941598" = { os = "macos" }          # Affinity Publisher 2
+"mas:1616822987" = { os = "macos" }          # Affinity Photo 2
+"mas:1616831348" = { os = "macos" }          # Affinity Designer 2
+
+# UniFi is personal-only but has no current Homebrew cask or App Store ID.

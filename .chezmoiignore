@@ -1,5 +1,10 @@
-{{- if not (and .is_work (eq .chezmoi.os "darwin")) }}
+{{- if not .is_work }}
 .config/mise/conf.d/30-work.toml
+{{- end }}
+{{- if .is_work }}
+.config/mise/conf.d/40-personal.toml
+{{- end }}
+{{- if not (and .is_work (eq .chezmoi.os "darwin")) }}
 .config/openshell/gateway.toml
 .config/work-assistant
 .config/work-assistant/**

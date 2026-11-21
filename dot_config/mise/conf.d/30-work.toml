@@ -1,9 +1,11 @@
 [bootstrap.packages]
 "brew:aerc" = { os = "macos" }
+"brew:awscli" = { os = "macos" }
 "brew:nvidia/openshell/openshell" = { os = "macos" }
+"brew:okta-aws-cli" = { os = "macos" }
 "brew-cask:gcloud-cli" = { os = "macos" }
+"brew-cask:microsoft-teams" = { os = "macos" }
 "brew-cask:obsidian" = { os = "macos" }
 "brew-cask:podman-desktop" = { os = "macos" }
 
-[tools]
-herdr = "0.9.5"
+"dnf:awscli" = { os = "linux" }

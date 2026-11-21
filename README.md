@@ -23,7 +23,7 @@ Managed with [chezmoi](https://chezmoi.io).
 
 ## Machine roles
 
-The first `chezmoi init` asks whether the machine is `personal` or `work`. The answer is stored only in the machine's local chezmoi config. Work-only configuration, packages, images, services, and LaunchAgents are not applied to personal machines.
+The first `chezmoi init` asks whether the machine is `personal` or `work`. The answer is stored only in the machine's local chezmoi config. Shared tools live in the common mise fragments; role-specific packages live in `30-work.toml` and `40-personal.toml`. Work-only configuration, images, services, and LaunchAgents are not applied to personal machines.
 
 ## Prerequisites
 
